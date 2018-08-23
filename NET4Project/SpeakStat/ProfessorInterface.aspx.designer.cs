@@ -85,22 +85,22 @@ namespace SpeakStat {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ViewClassPanel;
         
         /// <summary>
+        /// lblMyClasses control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMyClasses;
+        
+        /// <summary>
         /// myClasses control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label myClasses;
-        
-        /// <summary>
-        /// lstMyClasses control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lstMyClasses;
+        protected global::System.Web.UI.WebControls.DataList myClasses;
         
         /// <summary>
         /// CreateClassPanel control.

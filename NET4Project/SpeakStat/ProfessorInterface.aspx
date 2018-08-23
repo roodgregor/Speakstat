@@ -110,7 +110,7 @@
             width: 1200px;
             border: 4px solid black;
         }
-        #myClasses, #showCreateClass
+        #lblMyClasses, #showCreateClass
         {
             color: white;
             font-size: 50px;
@@ -136,7 +136,7 @@
             left: 50%;
             transform: translate(-50%,-50%);
         }
-        #login, #registerButton
+        #login, #registerButton, #selectClass
         {
             font-family: "Walkway Black";
             background-color: limegreen;
@@ -146,6 +146,20 @@
             border: 3px solid black;
             width: 100%;
             cursor: pointer;
+        }
+        #myClasses
+        {
+            width: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            text-align: center;
+        }
+        #classBox
+        {
+            width: 100%;
+            text-align: center;
         }
     </style>
 </head>
@@ -162,8 +176,21 @@
         </div>
 
         <div id="ViewClassPanel" runat="server">
-            <asp:Label ID="myClasses" runat="server" Text="My Classes"></asp:Label>
-            <asp:ListView ID="lstMyClasses" runat="server"></asp:ListView>
+            <asp:Label ID="lblMyClasses" runat="server" Text="My Classes"></asp:Label>
+            <asp:DataList ID="myClasses" runat="server">
+                <ItemTemplate>
+                    <table id="classBox" runat="server">
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label1" CssClass="SubLabels" runat="server" Text=<%#Eval("ClassName") %>></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Button ID="selectClass" runat="server" Text="SELECT" CausesValidation="false" />
+                            </td>
+                        </tr>
+                    </table>
+                </ItemTemplate>
+            </asp:DataList>
         </div>
 
         <div id="CreateClassPanel" runat="server">

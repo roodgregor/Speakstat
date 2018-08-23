@@ -31,7 +31,10 @@ namespace SpeakStat
                 string usertype = type.ExecuteScalar().ToString();
                 Response.Write("<script type='text/javascript'>alert('Success!');</script>");
                 if (usertype.ToUpper() == "TEACHER")
+                {
+                    Session["ProfessorID"] = id;
                     Response.Redirect("ProfessorInterface.aspx");
+                }
                 
             }
 
