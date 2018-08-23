@@ -146,13 +146,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:TextBox CssClass="inputbox" ID="LoginUserpasstxt" runat="server"></asp:TextBox>
+                        <asp:TextBox CssClass="inputbox" ID="LoginUserpasstxt" runat="server" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Password must not be empty." ControlToValidate="LoginUserpasstxt" ValidationGroup="login"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
                     <td><br />
-                        <asp:Button ID="login" runat="server" Text="Log In" ValidationGroup="login" />
+                        <asp:Button ID="login" runat="server" Text="Log In" ValidationGroup="login" OnClick="Login_Click" />
                     </td>
                 </tr>
             </table>
@@ -166,21 +166,21 @@
                 <tr>
                     <td>
                         <br /><br />
-                        <asp:ImageButton ID="ImageButton1" ImageUrl="~/Images/STUDENT.png" Height="120px" Width="120px" runat="server" CssClass="image" />
+                        <asp:ImageButton ID="ImageButton1" ImageUrl="~/Images/STUDENT.png" Height="120px" Width="120px" runat="server" CssClass="image" CausesValidation="false" OnClick="Studentbtn_Click" />
                         <br />
                         <asp:Label CssClass="SubLabels" ID="Label5" runat="server" Text="STUDENT"></asp:Label>
                         <!-- insert imagebuttons here-->
                     </td>
                     <td>
                         <br /><br />
-                        <asp:ImageButton ID="ImageButton2" ImageUrl="~/Images/PARENT.png" Height="120px" Width="120px" runat="server" CssClass="image" />
+                        <asp:ImageButton ID="ImageButton2" ImageUrl="~/Images/PARENT.png" Height="120px" Width="120px" runat="server" CssClass="image" CausesValidation="false" OnClick="Parentbtn_Click" />
                         <br />
                         <asp:Label CssClass="SubLabels" ID="Label6" runat="server" Text="PARENT"></asp:Label>
                         <!-- insert imagebuttons here-->
                     </td>
                     <td>
                         <br /><br />
-                        <asp:ImageButton ID="ImageButton3" ImageUrl="~/Images/TEACHER.png" Height="120px" Width="120px" runat="server" CssClass="image" />
+                        <asp:ImageButton ID="ImageButton3" ImageUrl="~/Images/TEACHER.png" Height="120px" Width="120px" runat="server" CssClass="image" CausesValidation="false" OnClick="Teacherbtn_Click" />
                         <br />
                         <asp:Label CssClass="SubLabels" ID="Label7" runat="server" Text="TEACHER"></asp:Label>
                         <!-- insert imagebuttons here-->
@@ -240,7 +240,7 @@
                            </tr>
                            <tr>
                                <td colspan="4">
-                                   <asp:Button runat="server" Text="Register" ID="registerButton" ValidationGroup="register" />
+                                   <asp:Button runat="server" Text="Register" ID="registerButton" ValidationGroup="register" OnClick="Register_Click" />
                                </td>
                            </tr>
                        </table>
