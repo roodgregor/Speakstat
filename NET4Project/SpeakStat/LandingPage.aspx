@@ -135,7 +135,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:TextBox CssClass="inputbox" ID="TextBox1" runat="server"></asp:TextBox>
+                        <asp:TextBox CssClass="inputbox" ID="LoginUsernametxt" runat="server"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -145,7 +145,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:TextBox CssClass="inputbox" ID="TextBox2" runat="server"></asp:TextBox>
+                        <asp:TextBox CssClass="inputbox" ID="LoginUserpasstxt" runat="server"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -211,7 +211,7 @@
                                     <br /><br />
                                     <asp:Label CssClass="SubLabels" runat="server" ID="Label11" Text="Password: " />
                                     <br />
-                                    <asp:TextBox runat="server" ID="registerPassword" CssClass="inputbox" TextMode="Password" />
+                                    <asp:TextBox runat="server" ID="Passwordtxt" CssClass="inputbox" TextMode="Password" />
                                 </td>
                            </tr>
                            <tr>
@@ -219,13 +219,14 @@
                                     <br /><br />
                                     <asp:Label CssClass="SubLabels" runat="server" ID="Label12" Text="Email Address: " />
                                     <br />
-                                    <asp:TextBox runat="server" ID="TextBox3" CssClass="inputbox" />
+                                    <asp:TextBox runat="server" ID="Emailtxt" CssClass="inputbox" />
                                 </td>
                                 <td colspan="2">
                                     <br /><br />
                                     <asp:Label CssClass="SubLabels" runat="server" ID="Label13" Text="Confirm Password: " />
                                     <br />
-                                    <asp:TextBox runat="server" ID="TextBox4" CssClass="inputbox" TextMode="Password" />
+                                    <asp:TextBox runat="server" ID="ConfirmPasswordtxt" CssClass="inputbox" TextMode="Password" />
+                                    <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Password Don't Match" ControlToCompare="Passwordtxt" ControlToValidate="ConfirmPasswordtxt"></asp:CompareValidator>
                                 </td>
                            </tr>
                            <tr>
