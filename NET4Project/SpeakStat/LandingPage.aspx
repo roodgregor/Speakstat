@@ -136,6 +136,7 @@
                 <tr>
                     <td>
                         <asp:TextBox CssClass="inputbox" ID="LoginUsernametxt" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Username must not be empty." ControlToValidate="LoginUsernametxt" ValidationGroup="login"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -146,11 +147,12 @@
                 <tr>
                     <td>
                         <asp:TextBox CssClass="inputbox" ID="LoginUserpasstxt" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Password must not be empty." ControlToValidate="LoginUserpasstxt" ValidationGroup="login"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
                     <td><br />
-                        <asp:Button ID="login" runat="server" Text="Log In" />
+                        <asp:Button ID="login" runat="server" Text="Log In" ValidationGroup="login" />
                     </td>
                 </tr>
             </table>
@@ -193,11 +195,13 @@
                                     <asp:Label CssClass="SubLabels" runat="server" ID="Label8" Text="Given Name:" />
                                     <br />
                                     <asp:TextBox runat="server" ID="givenName" CssClass="inputbox" />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please input your given name." ControlToValidate="givenName" ValidationGroup="register"></asp:RequiredFieldValidator>
                                 </td>
                                 <td colspan="2">
                                     <asp:Label CssClass="SubLabels" runat="server" ID="Label9" Text="Username:" />
                                     <br />
                                     <asp:TextBox runat="server" ID="registerUsername" CssClass="inputbox" />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please input your a username." ControlToValidate="registerUsername" ValidationGroup="register"></asp:RequiredFieldValidator>
                                 </td>
                            </tr>
                            <tr>
@@ -206,12 +210,14 @@
                                     <asp:Label CssClass="SubLabels" runat="server" ID="Label10" Text="Last Name:" />
                                     <br />
                                     <asp:TextBox runat="server" ID="lastName" CssClass="inputbox" />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Please input your last name." ControlToValidate="lastName" ValidationGroup="register"></asp:RequiredFieldValidator>
                                 </td>
                                 <td colspan="2">
                                     <br /><br />
                                     <asp:Label CssClass="SubLabels" runat="server" ID="Label11" Text="Password: " />
                                     <br />
                                     <asp:TextBox runat="server" ID="Passwordtxt" CssClass="inputbox" TextMode="Password" />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Please input a password." ControlToValidate="Passwordtxt" ValidationGroup="register"></asp:RequiredFieldValidator>
                                 </td>
                            </tr>
                            <tr>
@@ -220,19 +226,21 @@
                                     <asp:Label CssClass="SubLabels" runat="server" ID="Label12" Text="Email Address: " />
                                     <br />
                                     <asp:TextBox runat="server" ID="Emailtxt" CssClass="inputbox" />
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please input a valid e-mail." ControlToValidate="Emailtxt" ValidationGroup="register" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator><br />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Please input an e-mail." ControlToValidate="Emailtxt" ValidationGroup="register"></asp:RequiredFieldValidator>
                                 </td>
                                 <td colspan="2">
                                     <br /><br />
                                     <asp:Label CssClass="SubLabels" runat="server" ID="Label13" Text="Confirm Password: " />
                                     <br />
                                     <asp:TextBox runat="server" ID="ConfirmPasswordtxt" CssClass="inputbox" TextMode="Password" />
-                                    <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Password Don't Match" ControlToCompare="Passwordtxt" ControlToValidate="ConfirmPasswordtxt"></asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Password Don't Match" ControlToCompare="Passwordtxt" ControlToValidate="ConfirmPasswordtxt" ValidationGroup="register"></asp:CompareValidator>
+                                    <br /><br />
                                 </td>
                            </tr>
                            <tr>
                                <td colspan="4">
-                                   <br /><br />
-                                   <asp:Button runat="server" Text="Register" ID="registerButton" />
+                                   <asp:Button runat="server" Text="Register" ID="registerButton" ValidationGroup="register" />
                                </td>
                            </tr>
                        </table>
