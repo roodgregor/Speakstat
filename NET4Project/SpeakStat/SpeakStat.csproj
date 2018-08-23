@@ -73,6 +73,7 @@
     <Content Include="Images\STUDENT.png" />
     <Content Include="Images\TEACHER.png" />
     <Content Include="LandingPage.aspx" />
+    <Content Include="ProfessorInterface.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +83,13 @@
     </Compile>
     <Compile Include="LandingPage.aspx.designer.cs">
       <DependentUpon>LandingPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProfessorInterface.aspx.cs">
+      <DependentUpon>ProfessorInterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProfessorInterface.aspx.designer.cs">
+      <DependentUpon>ProfessorInterface.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

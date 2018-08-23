@@ -21,11 +21,20 @@ namespace SpeakStat
         protected void Login_Click(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(connString);
-            SqlCommand cmd = new SqlCommand("SELECT AccID FROM Account where Username='" + LoginUsernametxt.Text + "' and UserPass ='" + LoginUserpasstxt.Text + "'", con);
+            SqlCommand cmd = new SqlCommand("SELECT AccID FROM Accounts where Username='" + LoginUsernametxt.Text + "' and UserPass ='" + LoginUserpasstxt.Text + "'", con);
             con.Open();
 
-            Response.Write("<script type='text/javascript'>alert('Success!');</script>");
-            //Response.Redirect("Page.aspx");
+            int id = Convert.ToInt32(cmd.ExecuteScalar());
+            if(id!=0)
+            {
+                SqlCommand type = new SqlCommand("SELECT AccType FROM Accounts Where AccID = '" + id.ToString() + "'", con);
+                string usertype = type.ExecuteScalar().ToString();
+                Response.Write("<script type='text/javascript'>alert('Success!');</script>");
+                if (usertype.ToUpper() == "TEACHER")
+                    Response.Redirect("ProfessorInterface.aspx");
+                
+            }
+
 
             con.Close();
 
