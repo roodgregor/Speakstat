@@ -12,18 +12,24 @@ namespace SpeakStat
     public partial class ProfessorInterface : System.Web.UI.Page
     {
         private string connString = @"Data Source=MEDONUTEST1999\JREMEDINA;Initial Catalog=SPKSTAT;Integrated Security=True";
+        int id;
         protected void Page_Load(object sender, EventArgs e)
         {
-            ViewClassPanel.Visible = false;
-            CreateClassPanel.Visible = false;
-            Bind_DataList();
+            id = Convert.ToInt32(Session["ProfessorID"]);
+            if (!Page.IsPostBack)
+            {
+                ViewClassPanel.Visible = false;
+                CreateClassPanel.Visible = false;
+                Bind_DataList();
+            }
         }
 
         protected void Bind_DataList()
         {
             SqlConnection con = new SqlConnection(connString);
             con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT ClassName FROM Classes", con);
+            SqlCommand cmd = new SqlCommand("SELECT ClassName FROM Classes WHERE InstructorID = @id", con);
+            cmd.Parameters.AddWithValue("@id", id);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
@@ -49,6 +55,7 @@ namespace SpeakStat
         protected void logoutBtn_Click(object sender, EventArgs e)
         {
             //eeege
+            Session.Clear();
             Response.Redirect("LandingPage.aspx");
         }
 

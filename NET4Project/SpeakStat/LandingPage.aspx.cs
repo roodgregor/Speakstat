@@ -35,6 +35,11 @@ namespace SpeakStat
                     Session["ProfessorID"] = id;
                     Response.Redirect("ProfessorInterface.aspx");
                 }
+                else
+                {
+                    Session["StudentID"] = id;
+                    Response.Redirect("StudentInterface.aspx");
+                }
                 
             }
 

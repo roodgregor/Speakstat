@@ -74,6 +74,7 @@
     <Content Include="Images\TEACHER.png" />
     <Content Include="LandingPage.aspx" />
     <Content Include="ProfessorInterface.aspx" />
+    <Content Include="StudentInterface.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +93,13 @@
       <DependentUpon>ProfessorInterface.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StudentInterface.aspx.cs">
+      <DependentUpon>StudentInterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentInterface.aspx.designer.cs">
+      <DependentUpon>StudentInterface.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Fonts\Walkway Black.ttf" />
