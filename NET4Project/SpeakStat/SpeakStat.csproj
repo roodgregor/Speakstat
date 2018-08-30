@@ -86,7 +86,6 @@
     <Content Include="ProfessorInterface.aspx" />
     <Content Include="StudentClassPage.aspx" />
     <Content Include="StudentInterface.aspx" />
-    <Content Include="StudentMapPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -125,13 +124,6 @@
     </Compile>
     <Compile Include="StudentInterface.aspx.designer.cs">
       <DependentUpon>StudentInterface.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="StudentMapPage.aspx.cs">
-      <DependentUpon>StudentMapPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="StudentMapPage.aspx.designer.cs">
-      <DependentUpon>StudentMapPage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -21,6 +21,7 @@ namespace SpeakStat
             {
                 ViewClassPanel.Visible = false;
                 CreateClassPanel.Visible = false;
+                ProgressPanel.Visible = false;
                 Bind_DataList();
             }
         }
@@ -44,6 +45,7 @@ namespace SpeakStat
             //display Classes of Professor
             ViewClassPanel.Visible = true;
             CreateClassPanel.Visible = false;
+            ProgressPanel.Visible = false;
         }
 
         protected void createClass_Click(object sender, EventArgs e)
@@ -51,6 +53,7 @@ namespace SpeakStat
             //create a class
             ViewClassPanel.Visible = false;
             CreateClassPanel.Visible = true;
+            ProgressPanel.Visible = false;
         }
 
         protected void logoutBtn_Click(object sender, EventArgs e)
@@ -101,6 +104,25 @@ namespace SpeakStat
             Button btn = sender as Button;
             Session["CLASSNAME"] = btn.CommandArgument.ToString();
             Response.Redirect("ProfessorClassPage.aspx");
+        }
+
+        protected void viewProgress_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            int classID = Convert.ToInt32(btn.CommandArgument);
+            ProgressPanel.Visible = true;
+
+            SqlConnection con = new SqlConnection(connString);
+            con.Open();
+            SqlCommand sql = new SqlCommand("SELECT A.LName, L.LevelNumber FROM Accounts A, Unlocking U, Levels L WHERE U.ClassID = @classID AND L.ClassID = @classID AND A.AccType = 'STUDENT'", con);
+            sql.Parameters.AddWithValue("@classID", classID);
+            SqlDataAdapter dA = new SqlDataAdapter(sql);
+            DataTable table = new DataTable();
+            dA.Fill(table);
+            myProgress.DataSource = table;
+            myProgress.DataBind();
+            con.Close();
+
         }
     }
 }

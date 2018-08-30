@@ -296,7 +296,7 @@
         <div id="GamePanel" runat="server"><br />
             &nbsp; <asp:Label ID="classname" runat="server" Text="Label"></asp:Label>
             <asp:LinkButton ID="CloseMap" runat="server" Text="X" OnClick="CloseMap_Click" />
-            <asp:ImageButton ID="btn1" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn1.png" />
+            <asp:ImageButton ID="btn1" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn1.png" OnClick="level_Clicked" />
             <asp:ImageButton ID="btn2" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn2.png" />
             <asp:ImageButton ID="btn3" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn3.png" />
             <asp:ImageButton ID="btn4" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn4.png" />

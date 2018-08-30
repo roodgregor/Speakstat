@@ -107,19 +107,90 @@ namespace SpeakStat
 
             //check number of levels
             SqlConnection con = new SqlConnection(connString);
+            con.Open();
             Label lbo = (Label)btn.Parent.Parent.Controls[0].Controls[1];
             Session["CLASSID"] = lbo.Text;
             SqlCommand sql = new SqlCommand("SELECT COUNT(*) FROM Levels WHERE ClassID = @ID", con);
             sql.Parameters.AddWithValue("@ID", Convert.ToInt32(Session["CLASSID"]));
             int levelCount = Convert.ToInt32(sql.ExecuteScalar());
+            con.Close();
 
+            switch (levelCount)
+            {
+                case 1:
+                    {
+                        btn8.Visible = false;
+                        goto case 2;
+                    }
+                case 2:
+                    {
+                        btn7.Visible = false;
+                        goto case 3;
+                    }
+                case 3:
+                    {
+                        btn6.Visible = false;
+                        goto case 4;
+                    }
+                case 4:
+                    {
+                        btn5.Visible = false;
+                        goto case 5;
+                    }
+                case 5:
+                    {
+                        btn4.Visible = false;
+                        goto case 6;
+                    }
+                case 6:
+                    {
+                        btn3.Visible = false;
+                        goto case 7;
+                    }
+                case 7:
+                    {
+                        btn2.Visible = false;
+                        goto default;
+                    }
+                default: break;
+            }
             GamePanel.Visible = true;
-
         }
 
         protected void CloseMap_Click(object sender, EventArgs e)
         {
             GamePanel.Visible = false;
+        }
+
+        protected void level_Clicked(object sender, EventArgs e)
+        {
+            ImageButton btn = sender as ImageButton;
+            string level = btn.ID.Substring(3, 1);
+            SqlConnection con = new SqlConnection(connString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SELECT VideoLink From Levels WHERE LevelNumber = @num AND ClassID = @ID", con);
+            cmd.Parameters.AddWithValue("@num", Convert.ToInt32(level));
+            cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(Session["CLASSID"]));
+            string videolink = cmd.ExecuteScalar().ToString();
+
+            SqlCommand get = new SqlCommand("SELECT LevelID From Levels WHERE LevelNumber = @num AND ClassID = @ID", con);
+            get.Parameters.AddWithValue("@num", Convert.ToInt32(level));
+            get.Parameters.AddWithValue("@ID", Convert.ToInt32(Session["CLASSID"]));
+            int levelID = Convert.ToInt32(get.ExecuteScalar());
+
+            Session["VIDEOLINK"] = videolink;
+
+            Session["LEVELID"] = levelID;
+
+            SqlCommand watch = new SqlCommand("INSERT INTO Unlocking VALUES ("+Session["StudentID"].ToString()+","+Session["CLASSID"].ToString()+","+level+")",con);
+            watch.ExecuteNonQuery();
+            con.Close();
+
+            //Response.Redirect("StudentClassPage.aspx");
+
+            Response.Write("<script type='text/javascript'>window.open('"+Session["VIDEOLINK"]+"','_blank');</script>");
+
+            Response.Write("<script type='text/javascript'>alert('You have completed Level "+level+" of this class!');</script>");
         }
     }
 }

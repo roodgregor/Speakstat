@@ -99,7 +99,7 @@
             left: 40%;
             width: auto;
         }
-        #ViewClassPanel, #CreateClassPanel
+        #ViewClassPanel, #CreateClassPanel. #ProgressPanel
         {
             position: absolute;
             top: 50%;
@@ -112,7 +112,7 @@
             border: 4px solid black;
             text-align: center;
         }
-        #lblMyClasses, #showCreateClass
+        #lblMyClasses, #showCreateClass, #viewProgress
         {
             color: white;
             font-size: 50px;
@@ -143,7 +143,7 @@
             border-radius: 20px;
             padding: 5px;
             border: 3px solid black;
-            width: 100%;
+            width: auto;
             cursor: pointer;
         }
         #myClasses
@@ -166,6 +166,11 @@
         {
             min-width: 30%;
             max-width: 95%;
+        }
+        #ProgressPanel
+        {
+            height: 70%;
+            width: 60%;
         }
     </style>
 </head>
@@ -195,6 +200,9 @@
                             <td>
                                 <asp:Button ID="selectClass" CssClass="leButton" runat="server" Text="SELECT" CausesValidation="false" OnClick="selectClass_Click" CommandArgument='<%#Eval("ClassName") %>'/>
                             </td>
+                            <td>
+                                <asp:Button ID="viewProgress" CssClass="leButton" runat="server" Text="Progress" CausesValidation="false" OnClick="viewProgress_Click" CommandArgument='<%#Eval("ClassID") %>'/>
+                            </td>
                         </tr>
                     </table>
                 </ItemTemplate>
@@ -219,6 +227,24 @@
                     </td>
                 </tr>
             </table>
+        </div>
+
+        <div id="ProgressPanel" runat="server">
+            <asp:Label ID="viewProgress" runat="server" Text="Create A Class"></asp:Label>
+            <asp:DataList ID="myProgress" runat="server">
+                <ItemTemplate>
+                    <table class="classBox" runat="server">
+                        <tr>
+                            <td class="abot">
+                                <asp:Label ID="Label2" CssClass="SubLabels" runat="server" Text=<%#Eval("LName") %>></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label4" CssClass="SubLabels" runat="server" Text=<%#Eval("LevelNumber") %>></asp:Label>
+                            </td>
+                        </tr>
+                    </table>
+                </ItemTemplate>
+            </asp:DataList>
         </div>
     </form>
 </body>
