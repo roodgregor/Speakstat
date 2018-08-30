@@ -155,10 +155,89 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%,-50%);
+            text-align: center;
         }
         #pushrow
         {
             width: 95%;
+        }
+        #GamePanel
+        {
+            height: 78%;
+            width: 38%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border: 4px solid black;
+            border-radius: 10px;
+            background-image: url('Images/Map.jpg');
+            background-size: contain;
+        }
+        #map
+        {
+            width: 90%;            
+            z-index: -1;
+        }
+        #classname
+        {
+            color: white;
+            font-size: 30px;
+        }
+        #CloseMap
+        {
+            color: white;
+            text-decoration: none;
+            position: absolute;
+            font-size: 30px;
+            top: 1%;
+            left: 95%;
+        }
+        .levelButton
+        {
+            height: 40px;
+            width: 40px;
+            position: absolute;
+        }
+        #btn1
+        {
+            top: 70%;
+            left: 50%;
+        }
+        #btn2
+        {
+            top: 85%;
+            left: 7%;
+        }
+        #btn3
+        {
+            top: 55%;
+            left: 8%;
+        }
+        #btn4
+        {
+            top: 50%;
+            left: 50%;
+        }
+        #btn5
+        {
+            top: 35%;
+            left: 76%;
+        }
+        #btn6
+        {
+            top: 25%;
+            left: 50%;
+        }
+        #btn7
+        {
+            top: 3%;
+            left: 33%;
+        }
+        #btn8
+        {
+            top: 3%;
+            left: 82%;
         }
     </style>
 </head>
@@ -181,7 +260,10 @@
                     <table class="classBox" runat="server">
                         <tr>
                             <td>
-                                <asp:Label ID="Label1" CssClass="SubLabels" runat="server" Text=<%#Eval("ClassName") %>>></asp:Label>
+                                <asp:Label ID="Label2" CssClass="SubLabels" runat="server" Text=<%#Eval("ClassID") %>></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label1" CssClass="SubLabels" runat="server" Text=<%#Eval("ClassName") %>></asp:Label>
                             </td>
                             <td>
                                 <asp:Button ID="selectClass" CssClass="leButton" runat="server" Text="SELECT" CausesValidation="false" OnClick="selectClass_Click" CommandArgument='<%# Eval("ClassName") %>'/>
@@ -209,6 +291,19 @@
                     </td>
                 </tr>
             </table>
+        </div>
+
+        <div id="GamePanel" runat="server"><br />
+            &nbsp; <asp:Label ID="classname" runat="server" Text="Label"></asp:Label>
+            <asp:LinkButton ID="CloseMap" runat="server" Text="X" OnClick="CloseMap_Click" />
+            <asp:ImageButton ID="btn1" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn1.png" />
+            <asp:ImageButton ID="btn2" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn2.png" />
+            <asp:ImageButton ID="btn3" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn3.png" />
+            <asp:ImageButton ID="btn4" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn4.png" />
+            <asp:ImageButton ID="btn5" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn5.png" />
+            <asp:ImageButton ID="btn6" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn6.png" />
+            <asp:ImageButton ID="btn7" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn7.png" />
+            <asp:ImageButton ID="btn8" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn8.png" />
         </div>
 
     </form>

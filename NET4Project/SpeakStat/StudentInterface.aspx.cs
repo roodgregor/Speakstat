@@ -21,6 +21,7 @@ namespace SpeakStat
             {
                 ViewClassPanel.Visible = false;
                 JoinClassPanel.Visible = false;
+                GamePanel.Visible = false;
                 Bind_DataList();
             }
         }
@@ -28,11 +29,13 @@ namespace SpeakStat
         protected void viewClass_Click(object sender, EventArgs e)
         {
             ViewClassPanel.Visible = true;
+            JoinClassPanel.Visible = false;
         }
 
         protected void joinClass_Click(object sender, EventArgs e)
         {
             JoinClassPanel.Visible = true;
+            ViewClassPanel.Visible = false;
             Bind_DataList();
         }
 
@@ -42,8 +45,8 @@ namespace SpeakStat
             string classCode = classCodeBox.Text;
             SqlConnection conn = new SqlConnection(connString);
             conn.Open();
-            SqlCommand cmdCheck = new SqlCommand("SELECT ClassID from Classes WHERE ClassName = @name", conn);
-            cmdCheck.Parameters.AddWithValue("@name", classCode);
+            SqlCommand cmdCheck = new SqlCommand("SELECT ClassID from Classes WHERE ClassID = @ID", conn);
+            cmdCheck.Parameters.AddWithValue("@ID", classCode);
             int classID = Convert.ToInt32(cmdCheck.ExecuteScalar());
             if(classID != 0)
             {
@@ -73,13 +76,13 @@ namespace SpeakStat
                 Response.Write("<script type='text/javascript'>alert('Class not found.');</script>");
             }
             conn.Close();
-            Response.AddHeader("REFRESH","1; StudentInterface.aspx");
+            Response.Redirect("StudentInterface.aspx");
         }
         protected void Bind_DataList()
         {
             SqlConnection con = new SqlConnection(connString);
             con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT ClassName FROM Classes WHERE ClassID IN (SELECT ClassID FROM Joining WHERE StudID = @id)", con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Classes WHERE ClassID IN (SELECT ClassID FROM Joining WHERE StudID = @id)", con);
             cmd.Parameters.AddWithValue("@id", id);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -98,8 +101,25 @@ namespace SpeakStat
         protected void selectClass_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            Session["CLASSNAME"] = btn.CommandArgument.ToString();
-            Response.Redirect("StudentClassPage.aspx");
+            Label lbl = (Label)btn.Parent.Parent.Controls[1].Controls[1];
+            Session["CLASSNAME"] = lbl.Text;
+            classname.Text = Session["CLASSNAME"].ToString();
+
+            //check number of levels
+            SqlConnection con = new SqlConnection(connString);
+            Label lbo = (Label)btn.Parent.Parent.Controls[0].Controls[1];
+            Session["CLASSID"] = lbo.Text;
+            SqlCommand sql = new SqlCommand("SELECT COUNT(*) FROM Levels WHERE ClassID = @ID", con);
+            sql.Parameters.AddWithValue("@ID", Convert.ToInt32(Session["CLASSID"]));
+            int levelCount = Convert.ToInt32(sql.ExecuteScalar());
+
+            GamePanel.Visible = true;
+
+        }
+
+        protected void CloseMap_Click(object sender, EventArgs e)
+        {
+            GamePanel.Visible = false;
         }
     }
 }

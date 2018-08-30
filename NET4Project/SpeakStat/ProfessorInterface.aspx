@@ -188,6 +188,8 @@
                     <table class="classBox" runat="server">
                         <tr>
                             <td class="abot">
+                                <asp:Label ID="Label2" CssClass="SubLabels" runat="server" Text=<%#Eval("ClassID") %>></asp:Label>
+                                <asp:Label ID="Label3" CssClass="SubLabels" runat="server" Text=" - "></asp:Label>
                                 <asp:Label ID="Label1" CssClass="SubLabels" runat="server" Text=<%#Eval("ClassName") %>></asp:Label>
                             </td>
                             <td>
@@ -204,7 +206,7 @@
             <table id="createTable" runat="server">
                 <tr>
                     <td>
-                        <asp:Label CssClass="SubLabels" runat="server" ID="Label9" Text="New Class Code: " />   
+                        <asp:Label CssClass="SubLabels" runat="server" ID="Label9" Text="New Class: " />   
                     </td>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:TextBox runat="server" ID="classNameBox" CssClass="inputbox" />

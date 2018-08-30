@@ -69,6 +69,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\BackgroundLanding.jpg" />
+    <Content Include="Images\btn1.png" />
+    <Content Include="Images\btn2.png" />
+    <Content Include="Images\btn3.png" />
+    <Content Include="Images\btn4.png" />
+    <Content Include="Images\btn5.png" />
+    <Content Include="Images\btn6.png" />
+    <Content Include="Images\btn7.png" />
+    <Content Include="Images\btn8.png" />
+    <Content Include="Images\Map.jpg" />
     <Content Include="Images\PARENT.png" />
     <Content Include="Images\STUDENT.png" />
     <Content Include="Images\TEACHER.png" />
@@ -77,6 +86,7 @@
     <Content Include="ProfessorInterface.aspx" />
     <Content Include="StudentClassPage.aspx" />
     <Content Include="StudentInterface.aspx" />
+    <Content Include="StudentMapPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +125,13 @@
     </Compile>
     <Compile Include="StudentInterface.aspx.designer.cs">
       <DependentUpon>StudentInterface.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentMapPage.aspx.cs">
+      <DependentUpon>StudentMapPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentMapPage.aspx.designer.cs">
+      <DependentUpon>StudentMapPage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
