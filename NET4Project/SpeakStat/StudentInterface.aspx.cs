@@ -6,13 +6,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
-
+using System.Configuration;
 
 namespace SpeakStat
 {
     public partial class StudentInterface : System.Web.UI.Page
     {
-        private string connString = @"Data Source=MEDONUTEST1999\JREMEDINA;Initial Catalog=SPKSTAT;Integrated Security=True";
+        private string connString = ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
         int id;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -93,6 +93,13 @@ namespace SpeakStat
             //eeege
             Session.Clear();
             Response.Redirect("LandingPage.aspx");
+        }
+
+        protected void selectClass_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            Session["CLASSNAME"] = btn.CommandArgument.ToString();
+            Response.Redirect("StudentClassPage.aspx");
         }
     }
 }

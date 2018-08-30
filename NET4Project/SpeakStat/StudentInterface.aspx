@@ -184,7 +184,7 @@
                                 <asp:Label ID="Label1" CssClass="SubLabels" runat="server" Text=<%#Eval("ClassName") %>>></asp:Label>
                             </td>
                             <td>
-                                <asp:Button ID="selectClass" CssClass="leButton" runat="server" Text="SELECT" CausesValidation="false"/>
+                                <asp:Button ID="selectClass" CssClass="leButton" runat="server" Text="SELECT" CausesValidation="false" OnClick="selectClass_Click" CommandArgument='<%# Eval("ClassName") %>'/>
                             </td>
                         </tr>
                     </table>

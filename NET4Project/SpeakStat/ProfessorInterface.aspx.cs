@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace SpeakStat
 {
     public partial class ProfessorInterface : System.Web.UI.Page
     {
-        private string connString = @"Data Source=MEDONUTEST1999\JREMEDINA;Initial Catalog=SPKSTAT;Integrated Security=True";
+        private string connString = ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
         int id;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -74,6 +75,13 @@ namespace SpeakStat
             con.Close();
 
             Response.Write("<script type='text/javascript'>alert('Success!');</script>");
+        }
+
+        protected void selectClass_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            Session["CLASSNAME"] = btn.CommandArgument.ToString();
+            Response.Redirect("ProfessorClassPage.aspx");
         }
     }
 }

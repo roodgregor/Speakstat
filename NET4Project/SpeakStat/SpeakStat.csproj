@@ -73,7 +73,9 @@
     <Content Include="Images\STUDENT.png" />
     <Content Include="Images\TEACHER.png" />
     <Content Include="LandingPage.aspx" />
+    <Content Include="ProfessorClassPage.aspx" />
     <Content Include="ProfessorInterface.aspx" />
+    <Content Include="StudentClassPage.aspx" />
     <Content Include="StudentInterface.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -85,6 +87,13 @@
     <Compile Include="LandingPage.aspx.designer.cs">
       <DependentUpon>LandingPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ProfessorClassPage.aspx.cs">
+      <DependentUpon>ProfessorClassPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProfessorClassPage.aspx.designer.cs">
+      <DependentUpon>ProfessorClassPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ProfessorInterface.aspx.cs">
       <DependentUpon>ProfessorInterface.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -93,6 +102,13 @@
       <DependentUpon>ProfessorInterface.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StudentClassPage.aspx.cs">
+      <DependentUpon>StudentClassPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentClassPage.aspx.designer.cs">
+      <DependentUpon>StudentClassPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="StudentInterface.aspx.cs">
       <DependentUpon>StudentInterface.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
