@@ -152,7 +152,7 @@
             border-radius: 20px;
             padding: 5px;
             border: 3px solid black;
-            width: 20%;
+            width: auto;
             cursor: pointer;
         }
     </style>
@@ -171,6 +171,25 @@
         <div id="ViewUsersPanel" runat="server"><br />
             <asp:Label ID="lblMyClasses" runat="server" Text="My Classes"></asp:Label>
             <asp:DataList ID="myClasses" runat="server">
+                <HeaderTemplate>
+                    <table class="classBox" runat="server">
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label2" CssClass="SubLabels" runat="server" Text="Account ID"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label1" CssClass="SubLabels" runat="server" Text="First Name"></asp:Label>&nbsp;&nbsp;
+                                <asp:Label ID="Label3" CssClass="SubLabels" runat="server" Text="Last Name"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label4" CssClass="SubLabels" runat="server" Text="Account Type"></asp:Label>
+                            </td>
+                            <td colspan="2">
+                                <asp:Label ID="Label5" CssClass="SubLabels" runat="server" Text="Actions"></asp:Label>
+                            </td>
+                        </tr>
+                    </table>
+                </HeaderTemplate>
                 <ItemTemplate>
                     <table class="classBox" runat="server">
                         <tr>

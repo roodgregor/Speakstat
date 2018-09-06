@@ -130,13 +130,13 @@ namespace SpeakStat {
         protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// ImageButton1 control.
+        /// forStudent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
+        protected global::System.Web.UI.WebControls.ImageButton forStudent;
         
         /// <summary>
         /// Label5 control.
@@ -148,13 +148,13 @@ namespace SpeakStat {
         protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// ImageButton2 control.
+        /// forParent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton2;
+        protected global::System.Web.UI.WebControls.ImageButton forParent;
         
         /// <summary>
         /// Label6 control.
@@ -166,13 +166,13 @@ namespace SpeakStat {
         protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// ImageButton3 control.
+        /// forTeacher control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton3;
+        protected global::System.Web.UI.WebControls.ImageButton forTeacher;
         
         /// <summary>
         /// Label7 control.

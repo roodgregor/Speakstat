@@ -36,6 +36,16 @@ namespace SpeakStat
                     Session["ProfessorID"] = id;
                     Response.Redirect("ProfessorInterface.aspx");
                 }
+                else if (usertype.ToUpper() == "ADMIN")
+                {
+                    Session["AdminID"] = id;
+                    Response.Redirect("AdminInterface.aspx");
+                }
+                else if (usertype.ToUpper() == "PARENT")
+                {
+                    Session["ParentID"] = id;
+                    Response.Redirect("ParentInterface.aspx");
+                }
                 else
                 {
                     Session["StudentID"] = id;
@@ -60,35 +70,58 @@ namespace SpeakStat
             {
                 SqlConnection con = new SqlConnection(connString);
                 con.Open();
-                SqlCommand cmd = new SqlCommand("AddUser", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@FName", givenName.Text);
-                cmd.Parameters.AddWithValue("@LName", lastName.Text);
-                cmd.Parameters.AddWithValue("@Email", Emailtxt.Text);
-                cmd.Parameters.AddWithValue("@UserName", registerUsername.Text);
-                cmd.Parameters.AddWithValue("@Userpass", Passwordtxt.Text);
-                cmd.Parameters.AddWithValue("@AccType", (string)Session["usertype"]);
-                cmd.Parameters.AddWithValue("@JoinDate", DateTime.Today);
-                cmd.ExecuteNonQuery();
+                //check if existing
+                SqlCommand cmd1 = new SqlCommand("SELECT 1 FROM Accounts WHERE Username = @user", con);
+                cmd1.Parameters.AddWithValue("@user", registerUsername.Text);
+                SqlDataReader rd = cmd1.ExecuteReader();
+                if(!rd.HasRows)
+                {
+                    rd.Close();
+                    SqlCommand cmd = new SqlCommand("AddUser", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@FName", givenName.Text);
+                    cmd.Parameters.AddWithValue("@LName", lastName.Text);
+                    cmd.Parameters.AddWithValue("@Email", Emailtxt.Text);
+                    cmd.Parameters.AddWithValue("@UserName", registerUsername.Text);
+                    cmd.Parameters.AddWithValue("@Userpass", Passwordtxt.Text);
+                    cmd.Parameters.AddWithValue("@AccType", (string)Session["usertype"]);
+                    cmd.Parameters.AddWithValue("@JoinDate", DateTime.Today);
+                    cmd.ExecuteNonQuery();
 
-                Response.Write("<script type='text/javascript'>alert('Success!');</script>");
-                //Response.Redirect("Page.aspx");
+                    Response.Write("<script type='text/javascript'>alert('Success!');</script>");
+                    //Response.Redirect("Page.aspx");
+                }
+                else
+                {
+                    rd.Close();
+                    Response.Write("<script type='text/javascript'>alert('Username is already taken!');</script>");
+                }
+
             }
         }
 
         protected void Studentbtn_Click(object sender, EventArgs e)
         {
-             Session["usertype"] = "Student";
+            Session["usertype"] = "Student";
+            forStudent.Style.Value = "opacity: 1";
+            forTeacher.Style.Value = "opacity: 0.5";
+            forParent.Style.Value = "opacity: 0.5";
         }
 
         protected void Parentbtn_Click(object sender, EventArgs e)
         {
             Session["usertype"] = "Parent";
+            forStudent.Style.Value = "opacity: 0.5";
+            forTeacher.Style.Value = "opacity: 0.5";
+            forParent.Style.Value = "opacity: 1";
         }
 
         protected void Teacherbtn_Click(object sender, EventArgs e)
         {
             Session["usertype"] = "Teacher";
+            forStudent.Style.Value = "opacity: 0.5";
+            forTeacher.Style.Value = "opacity: 1";
+            forParent.Style.Value = "opacity: 0.5";
         }
     }
 }

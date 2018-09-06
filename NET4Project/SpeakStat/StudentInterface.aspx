@@ -256,6 +256,21 @@
         <div id="ViewClassPanel" runat="server"><br />
             <asp:Label ID="lblMyClasses" runat="server" Text="My Classes"></asp:Label>
             <asp:DataList ID="myClasses" runat="server">
+                <HeaderTemplate>
+                    <table class="classBox" runat="server">
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label2" CssClass="SubLabels" runat="server" Text="Class ID"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label1" CssClass="SubLabels" runat="server" Text="Class Name"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label3" CssClass="SubLabels" runat="server" Text="Action"></asp:Label>
+                            </td>
+                        </tr>
+                    </table>
+                </HeaderTemplate>
                 <ItemTemplate>
                     <table class="classBox" runat="server">
                         <tr>
@@ -297,13 +312,13 @@
             &nbsp; <asp:Label ID="classname" runat="server" Text="Label"></asp:Label>
             <asp:LinkButton ID="CloseMap" runat="server" Text="X" OnClick="CloseMap_Click" />
             <asp:ImageButton ID="btn1" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn1.png" OnClick="level_Clicked" />
-            <asp:ImageButton ID="btn2" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn2.png" />
-            <asp:ImageButton ID="btn3" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn3.png" />
-            <asp:ImageButton ID="btn4" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn4.png" />
-            <asp:ImageButton ID="btn5" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn5.png" />
-            <asp:ImageButton ID="btn6" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn6.png" />
-            <asp:ImageButton ID="btn7" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn7.png" />
-            <asp:ImageButton ID="btn8" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn8.png" />
+            <asp:ImageButton ID="btn2" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn2.png" OnClick="level_Clicked" />
+            <asp:ImageButton ID="btn3" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn3.png" OnClick="level_Clicked" />
+            <asp:ImageButton ID="btn4" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn4.png" OnClick="level_Clicked" />
+            <asp:ImageButton ID="btn5" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn5.png" OnClick="level_Clicked" />
+            <asp:ImageButton ID="btn6" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn6.png" OnClick="level_Clicked" />
+            <asp:ImageButton ID="btn7" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn7.png" OnClick="level_Clicked" />
+            <asp:ImageButton ID="btn8" CssClass="levelButton" runat="server" ImageUrl="~/Images/btn8.png" OnClick="level_Clicked" />
         </div>
 
     </form>

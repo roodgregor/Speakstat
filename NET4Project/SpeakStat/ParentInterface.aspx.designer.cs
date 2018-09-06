@@ -58,13 +58,13 @@ namespace SpeakStat {
         protected global::System.Web.UI.WebControls.Button logoutBtn;
         
         /// <summary>
-        /// ViewClassPanel control.
+        /// ViewMyChild control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ViewClassPanel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ViewMyChild;
         
         /// <summary>
         /// lblMyClasses control.
@@ -76,13 +76,67 @@ namespace SpeakStat {
         protected global::System.Web.UI.WebControls.Label lblMyClasses;
         
         /// <summary>
-        /// myClasses control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList myClasses;
+        protected global::System.Web.UI.WebControls.Label Label3;
+        
+        /// <summary>
+        /// ChildUsername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ChildUsername;
+        
+        /// <summary>
+        /// asdf control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label asdf;
+        
+        /// <summary>
+        /// ChildFName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ChildFName;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// ChildLName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ChildLName;
+        
+        /// <summary>
+        /// submitDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button submitDetails;
         
         /// <summary>
         /// ProgressPanel control.
@@ -101,6 +155,15 @@ namespace SpeakStat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label viewProgress;
+        
+        /// <summary>
+        /// ChildName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ChildName;
         
         /// <summary>
         /// myProgress control.

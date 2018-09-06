@@ -181,19 +181,19 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:ImageButton ID="ImageButton1" ImageUrl="~/Images/STUDENT.png" runat="server" CssClass="image" CausesValidation="false" OnClick="Studentbtn_Click" />
+                            <asp:ImageButton ID="forStudent" ImageUrl="~/Images/STUDENT.png" runat="server" CssClass="image" CausesValidation="false" OnClick="Studentbtn_Click" />
                             <br />
                             <asp:Label CssClass="SubLabels" ID="Label5" runat="server" Text="STUDENT"></asp:Label>
                             <!-- insert imagebuttons here-->
                         </td>
                         <td>
-                            <asp:ImageButton ID="ImageButton2" ImageUrl="~/Images/PARENT.png" runat="server" CssClass="image" CausesValidation="false" OnClick="Parentbtn_Click" />
+                            <asp:ImageButton ID="forParent" ImageUrl="~/Images/PARENT.png" runat="server" CssClass="image" CausesValidation="false" OnClick="Parentbtn_Click" />
                             <br />
                             <asp:Label CssClass="SubLabels" ID="Label6" runat="server" Text="PARENT"></asp:Label>
                             <!-- insert imagebuttons here-->
                         </td>
                         <td>
-                            <asp:ImageButton ID="ImageButton3" ImageUrl="~/Images/TEACHER.png" runat="server" CssClass="image" CausesValidation="false" OnClick="Teacherbtn_Click" />
+                            <asp:ImageButton ID="forTeacher" ImageUrl="~/Images/TEACHER.png" runat="server" CssClass="image" CausesValidation="false" OnClick="Teacherbtn_Click" />
                             <br />
                             <asp:Label CssClass="SubLabels" ID="Label7" runat="server" Text="TEACHER"></asp:Label>
                             <!-- insert imagebuttons here-->

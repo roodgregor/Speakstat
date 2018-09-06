@@ -98,8 +98,21 @@ namespace SpeakStat
             Response.Redirect("LandingPage.aspx");
         }
 
+        protected void visibleAll()
+        {
+            btn2.Visible = true;
+            btn3.Visible = true;
+            btn4.Visible = true;
+            btn5.Visible = true;
+            btn6.Visible = true;
+            btn7.Visible = true;
+            btn8.Visible = true;
+        }
+
         protected void selectClass_Click(object sender, EventArgs e)
         {
+            visibleAll();
+
             Button btn = sender as Button;
             Label lbl = (Label)btn.Parent.Parent.Controls[1].Controls[1];
             Session["CLASSNAME"] = lbl.Text;
@@ -119,17 +132,17 @@ namespace SpeakStat
             {
                 case 1:
                     {
-                        btn8.Visible = false;
+                        btn2.Visible = false;
                         goto case 2;
                     }
                 case 2:
                     {
-                        btn7.Visible = false;
+                        btn3.Visible = false;
                         goto case 3;
                     }
                 case 3:
                     {
-                        btn6.Visible = false;
+                        btn4.Visible = false;
                         goto case 4;
                     }
                 case 4:
@@ -139,17 +152,17 @@ namespace SpeakStat
                     }
                 case 5:
                     {
-                        btn4.Visible = false;
+                        btn6.Visible = false;
                         goto case 6;
                     }
                 case 6:
                     {
-                        btn3.Visible = false;
+                        btn7.Visible = false;
                         goto case 7;
                     }
                 case 7:
                     {
-                        btn2.Visible = false;
+                        btn8.Visible = false;
                         goto default;
                     }
                 default: break;
@@ -160,14 +173,30 @@ namespace SpeakStat
         protected void CloseMap_Click(object sender, EventArgs e)
         {
             GamePanel.Visible = false;
+            Session["CLASSID"] = null;
         }
 
         protected void level_Clicked(object sender, EventArgs e)
         {
             ImageButton btn = sender as ImageButton;
             string level = btn.ID.Substring(3, 1);
+            int mustHave = Convert.ToInt32(level) - 1;
+
             SqlConnection con = new SqlConnection(connString);
             con.Open();
+
+            SqlCommand checkLevel = new SqlCommand("SELECT 5 FROM Unlocking WHERE StudID = @stud AND ClassID = @class AND LevelID = @level", con);
+            checkLevel.Parameters.AddWithValue("@stud", Convert.ToInt32(Session["StudentID"]));
+            checkLevel.Parameters.AddWithValue("@level", mustHave);
+            checkLevel.Parameters.AddWithValue("@class", Convert.ToInt32(Session["CLASSID"]));
+            SqlDataReader dro = checkLevel.ExecuteReader();
+            if(!dro.HasRows && mustHave != 0)
+            {
+                dro.Close();
+                Response.Write("<script type='text/javascript'>alert('This level is still locked!!!');</script>");
+                return;
+            }
+            dro.Close();
             SqlCommand cmd = new SqlCommand("SELECT VideoLink From Levels WHERE LevelNumber = @num AND ClassID = @ID", con);
             cmd.Parameters.AddWithValue("@num", Convert.ToInt32(level));
             cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(Session["CLASSID"]));
@@ -182,8 +211,18 @@ namespace SpeakStat
 
             Session["LEVELID"] = levelID;
 
-            SqlCommand watch = new SqlCommand("INSERT INTO Unlocking VALUES ("+Session["StudentID"].ToString()+","+Session["CLASSID"].ToString()+","+level+")",con);
-            watch.ExecuteNonQuery();
+            SqlCommand check = new SqlCommand("SELECT 55 FROM Unlocking WHERE StudID = @stud AND ClassID = @class AND LevelID = @level", con);
+            check.Parameters.AddWithValue("@stud", Convert.ToInt32(Session["StudentID"]));
+            check.Parameters.AddWithValue("@level", Convert.ToInt32(Session["LEVELID"]));
+            check.Parameters.AddWithValue("@class", Convert.ToInt32(Session["CLASSID"]));
+            SqlDataReader dr = check.ExecuteReader();
+            if(!dr.HasRows)
+            {
+                dr.Close();
+                SqlCommand watch = new SqlCommand("INSERT INTO Unlocking VALUES (" + Session["StudentID"].ToString() + "," + Session["CLASSID"].ToString() + "," + level + ")", con);
+                watch.ExecuteNonQuery();
+            }
+            
             con.Close();
 
             //Response.Redirect("StudentClassPage.aspx");

@@ -35,7 +35,8 @@ namespace SpeakStat
         {
             SqlConnection con = new SqlConnection(connString);
             con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Accounts", con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Accounts WHERE AccID != @id", con);
+            cmd.Parameters.AddWithValue("@id", Convert.ToInt32(Session["AdminID"]));
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adapter.Fill(dt);

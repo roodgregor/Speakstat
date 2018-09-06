@@ -94,7 +94,7 @@
             left: 26%;
             width: auto;
         }
-        #ViewClassPanel, #CreateClassPanel. #ProgressPanel
+        #ViewMyChild, #ProgressPanel
         {
             position: absolute;
             top: 50%;
@@ -179,36 +179,62 @@
             </div>
         </div>
 
-        <div id="ViewClassPanel" runat="server"><br />
-            <asp:Label ID="lblMyClasses" runat="server" Text="My Classes"></asp:Label>
-            <asp:DataList ID="myClasses" runat="server">
-                <ItemTemplate>
+        <div id="ViewMyChild" runat="server"><br />
+            <asp:Label ID="lblMyClasses" runat="server" Text="Enter Child Details"></asp:Label>
+            <table>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label3" CssClass="SubLabels" runat="server" Text="User Name:"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:TextBox CssClass="inputbox" ID="ChildUsername" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="asdf" CssClass="SubLabels" runat="server" Text="First Name:"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:TextBox CssClass="inputbox" ID="ChildFName" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label1" CssClass="SubLabels" runat="server" Text="Last Name:"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:TextBox CssClass="inputbox" ID="ChildLName" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <asp:Button ID="submitDetails" CssClass="leButton" runat="server" Text="CONFIRM" CausesValidation="true" OnClick="submitDetails_Click"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="ProgressPanel" runat="server"><br />
+            <asp:Label ID="viewProgress" runat="server" Text="Displaying Child Progress"></asp:Label><br /><br />
+            <asp:Label ID="ChildName" CssClass="SubLabels" runat="server" Text=""></asp:Label><br /><br />
+            <asp:DataList ID="myProgress" runat="server">
+                <HeaderTemplate>
                     <table class="classBox" runat="server">
                         <tr>
                             <td class="abot">
-                                <asp:Label ID="Label2" CssClass="SubLabels" runat="server" Text=<%#Eval("ClassID") %>></asp:Label>
-                                <asp:Label ID="Label3" CssClass="SubLabels" runat="server" Text=" - "></asp:Label>
-                                <asp:Label ID="Label1" CssClass="SubLabels" runat="server" Text=<%#Eval("ClassName") %>></asp:Label>
+                                <asp:Label ID="Label2" CssClass="SubLabels" runat="server" Text="Class Name"></asp:Label>
                             </td>
                             <td>
-                                <asp:Button ID="selectClass" CssClass="leButton" runat="server" Text="SELECT" CausesValidation="false" OnClick="selectClass_Click" CommandArgument='<%#Eval("ClassName") %>'/>
-                            </td>
-                            <td>
-                                <asp:Button ID="viewProgress" CssClass="leButton" runat="server" Text="Progress" CausesValidation="false" OnClick="viewProgress_Click" CommandArgument='<%#Eval("ClassID") %>'/>
+                                <asp:Label ID="Label4" CssClass="SubLabels" runat="server" Text="Progress Level"></asp:Label>
                             </td>
                         </tr>
                     </table>
-                </ItemTemplate>
-            </asp:DataList>
-
-        <div id="ProgressPanel" runat="server">
-            <asp:Label ID="viewProgress" runat="server" Text="Create A Class"></asp:Label>
-            <asp:DataList ID="myProgress" runat="server">
+                </HeaderTemplate>
                 <ItemTemplate>
                     <table class="classBox" runat="server">
                         <tr>
                             <td class="abot">
-                                <asp:Label ID="Label2" CssClass="SubLabels" runat="server" Text=<%#Eval("LName") %>></asp:Label>
+                                <asp:Label ID="Label2" CssClass="SubLabels" runat="server" Text=<%#Eval("ClassName") %>></asp:Label>
                             </td>
                             <td>
                                 <asp:Label ID="Label4" CssClass="SubLabels" runat="server" Text=<%#Eval("LevelNumber") %>></asp:Label>

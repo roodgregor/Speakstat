@@ -99,7 +99,7 @@
             left: 40%;
             width: auto;
         }
-        #ViewClassPanel, #CreateClassPanel. #ProgressPanel
+        #ViewClassPanel, #CreateClassPanel, #ProgressPanel, #EditClassLevels
         {
             position: absolute;
             top: 50%;
@@ -189,6 +189,18 @@
         <div id="ViewClassPanel" runat="server"><br />
             <asp:Label ID="lblMyClasses" runat="server" Text="My Classes"></asp:Label>
             <asp:DataList ID="myClasses" runat="server">
+                <HeaderTemplate>
+                    <table class="classBox" runat="server">
+                        <tr>
+                            <td class="abot">
+                                <asp:Label ID="Label2" CssClass="SubLabels" runat="server" Text="ClassID - ClassName"></asp:Label>
+                            </td>
+                            <td colspan="2">
+                                <asp:Label CssClass="SubLabels" runat="server" ID="Label9" Text="ACTIONS" />
+                            </td>
+                        </tr>
+                    </table>
+                </HeaderTemplate>
                 <ItemTemplate>
                     <table class="classBox" runat="server">
                         <tr>
@@ -201,7 +213,10 @@
                                 <asp:Button ID="selectClass" CssClass="leButton" runat="server" Text="SELECT" CausesValidation="false" OnClick="selectClass_Click" CommandArgument='<%#Eval("ClassName") %>'/>
                             </td>
                             <td>
-                                <asp:Button ID="viewProgress" CssClass="leButton" runat="server" Text="Progress" CausesValidation="false" OnClick="viewProgress_Click" CommandArgument='<%#Eval("ClassID") %>'/>
+                                <asp:Button ID="viewProgress" CssClass="leButton" runat="server" Text="PROGRESS" CausesValidation="false" OnClick="viewProgress_Click" CommandArgument='<%#Eval("ClassID") %>'/>
+                            </td>
+                            <td>
+                                <asp:Button ID="editLevels" CssClass="leButton" runat="server" Text="EDIT LEVELS" CausesValidation="false" OnClick="editLevels_Click" CommandArgument='<%#Eval("ClassID") + " - " + Eval("ClassName") %>'/>
                             </td>
                         </tr>
                     </table>
@@ -232,6 +247,18 @@
         <div id="ProgressPanel" runat="server">
             <asp:Label ID="viewProgress" runat="server" Text="Create A Class"></asp:Label>
             <asp:DataList ID="myProgress" runat="server">
+                <HeaderTemplate>
+                    <table class="classBox" runat="server">
+                        <tr>
+                            <td class="abot">
+                                <asp:Label ID="Label2" CssClass="SubLabels" runat="server" Text="Last Name"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label4" CssClass="SubLabels" runat="server" Text="Level Number"></asp:Label>
+                            </td>
+                        </tr>
+                    </table>
+                </HeaderTemplate>
                 <ItemTemplate>
                     <table class="classBox" runat="server">
                         <tr>
@@ -246,6 +273,55 @@
                 </ItemTemplate>
             </asp:DataList>
         </div>
+
+        <div id="EditClassLevels" runat="server"><br />
+            <asp:Label ID="showClassID" runat="server" Text="" /><br />
+            <asp:DataList ID="EditDataList" runat="server">
+                <HeaderTemplate>
+                    <table class="classBox" runat="server">
+                        <tr>
+                            <td class="abot">
+                                <asp:Label ID="Label2" CssClass="SubLabels" runat="server" Text="Level Number"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label4" CssClass="SubLabels" runat="server" Text="Video Link"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label124" CssClass="SubLabels" runat="server" Text="Actions"></asp:Label>
+                            </td>
+                        </tr>
+                    </table>
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <table class="classBox" runat="server">
+                        <tr>
+                            <td class="abot">
+                                <asp:Label ID="Label2" CssClass="SubLabels" runat="server" Text='<%#Eval("LevelNumber") %>'></asp:Label>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="tbo" CssClass="inputbox" runat="server" Text='<%#Eval("VideoLink") %>'></asp:TextBox>
+                            </td>
+                            <td>
+                                <asp:Button ID="EditLevel" CssClass="leButton" runat="server" Text="Edit" CommandArgument='<%#Eval("LevelNumber")%>' OnClick="EditLevel_Click" />
+                            </td>
+                        </tr>
+                    </table>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <table class="classBox" runat="server">
+                        <tr>
+                            <td colspan="3">
+                                <asp:Button ID="AddLevel" CssClass="leButton" runat="server" Text="ADD LEVEL" OnClick="AddLevel_Click" />
+                            </td>
+                        </tr>
+                    </table>
+                </FooterTemplate>
+            </asp:DataList>
+
+
+        </div>
+
+
     </form>
 </body>
 </html>

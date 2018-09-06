@@ -13,36 +13,62 @@ namespace SpeakStat
     public partial class ParentInterface : System.Web.UI.Page
     {
         private string connString = ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
+        int id;
+        int myChild;
         protected void Page_Load(object sender, EventArgs e)
         {
+            id = Convert.ToInt32(Session["ParentID"]);
             if (!Page.IsPostBack)
             {
-                //ViewClassPanel.Visible = false;
-                ProgressPanel.Visible = false;
-                //Bind_DataList();
+                //check if in Parents
+                SqlConnection con = new SqlConnection(connString);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT 1 FROM Parents WHERE ParentID = @id", con);
+                cmd.Parameters.AddWithValue("@id", id);
+                SqlDataReader dr = cmd.ExecuteReader();
+                if(!dr.HasRows)
+                {
+                    ShowConfirm();
+                }
+                else
+                {
+                    dr.Close();
+                    SqlCommand com = new SqlCommand("SELECT (FName + ' ' + LName) AS Name FROM Accounts WHERE AccID = (SELECT ChildID FROM Parents WHERE ParentID = @id)", con);
+                    com.Parameters.AddWithValue("@id", id);
+                    ChildName.Text = com.ExecuteScalar().ToString();
+
+                    SqlCommand childID = new SqlCommand("SELECT ChildID FROM Parents WHERE ParentID = @id", con);
+                    childID.Parameters.AddWithValue("@id", id);
+                    myChild = Convert.ToInt32(childID.ExecuteScalar());
+
+                    Bind_DataList();
+
+                    ProgressPanel.Style.Value = "visiblity: visible;";
+                    ViewMyChild.Style.Value = "visibility: hidden;";
+                }
+                dr.Close();
+                con.Close();
             }
         }
 
-        //protected void Bind_DataList()
-        //{
-        //    SqlConnection con = new SqlConnection(connString);
-        //    con.Open();
-        //    SqlCommand cmd = new SqlCommand("SELECT * FROM Classes WHERE InstructorID = @id", con);
-        //    cmd.Parameters.AddWithValue("@id", id);
-        //    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-        //    DataTable dt = new DataTable();
-        //    adapter.Fill(dt);
-        //    myClasses.DataSource = dt;
-        //    myClasses.DataBind();
-        //    con.Close();
-        //}
-
-
-        protected void createClass_Click(object sender, EventArgs e)
+        protected void ShowConfirm()
         {
-            //create a class
-            ViewClassPanel.Visible = false;
-            ProgressPanel.Visible = false;
+            //show panel
+            ProgressPanel.Style.Value = "visibility: hidden;";
+        }
+
+        protected void Bind_DataList()
+        {
+            SqlConnection con = new SqlConnection(connString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SELECT J.StudID, C.ClassName, L.LevelNumber FROM Classes C, Levels L, Joining J WHERE J.StudID = @id AND J.ClassID = C.ClassID AND J.LevelID = L.LevelID", con);
+            cmd.Parameters.AddWithValue("@id", myChild);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            myProgress.DataSource = dt;
+            myProgress.DataBind();
+            con.Close();
         }
 
         protected void logoutBtn_Click(object sender, EventArgs e)
@@ -52,23 +78,25 @@ namespace SpeakStat
             Response.Redirect("LandingPage.aspx");
         }
 
-        //protected void viewProgress_Click(object sender, EventArgs e)
-        //{
-        //    Button btn = sender as Button;
-        //    int classID = Convert.ToInt32(btn.CommandArgument);
-        //    ProgressPanel.Visible = true;
+        protected void submitDetails_Click(object sender, EventArgs e)
+        {
+            //submit
+            SqlConnection con = new SqlConnection(connString);
+            con.Open();
+                SqlCommand cmd = new SqlCommand("LinkParent", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@first", ChildFName.Text);
+                cmd.Parameters.AddWithValue("@last", ChildLName.Text);
+                cmd.Parameters.AddWithValue("@username", ChildUsername.Text);
+                int i = cmd.ExecuteNonQuery();
 
-        //    SqlConnection con = new SqlConnection(connString);
-        //    con.Open();
-        //    SqlCommand sql = new SqlCommand("SELECT A.LName, L.LevelNumber FROM Accounts A, Unlocking U, Levels L WHERE U.ClassID = @classID AND L.ClassID = @classID AND A.AccType = 'STUDENT'", con);
-        //    sql.Parameters.AddWithValue("@classID", classID);
-        //    SqlDataAdapter dA = new SqlDataAdapter(sql);
-        //    DataTable table = new DataTable();
-        //    dA.Fill(table);
-        //    myProgress.DataSource = table;
-        //    myProgress.DataBind();
-        //    con.Close();
+            if (i <= 0)
+                Response.Write("<script type='text/javascript'>alert('Such user does not exist. You may have entered the wrong details.');</script>");
 
-        //}
+            con.Close();
+
+            Response.Redirect("ParentInterface.aspx");
+        }
     }
 }

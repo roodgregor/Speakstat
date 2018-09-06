@@ -17,11 +17,34 @@ namespace SpeakStat
         protected void Page_Load(object sender, EventArgs e)
         {
             id = Convert.ToInt32(Session["ProfessorID"]);
-            if (!Page.IsPostBack)
+            if(Convert.ToBoolean(Session["Opened"]) == true)
+            {
+                int classID = Convert.ToInt32(Session["currClassID"]);
+
+                SqlConnection con = new SqlConnection(connString);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Levels WHERE ClassID = @id", con);
+                cmd.Parameters.AddWithValue("@id", classID);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                EditDataList.DataSource = dt;
+                EditDataList.DataBind();
+                con.Close();
+
+                EditClassLevels.Visible = true;
+                ViewClassPanel.Visible = false;
+                CreateClassPanel.Visible = false;
+                ProgressPanel.Visible = false;
+                Session["Opened"] = false;
+                Bind_DataList();
+            }
+            else if (!Page.IsPostBack)
             {
                 ViewClassPanel.Visible = false;
                 CreateClassPanel.Visible = false;
                 ProgressPanel.Visible = false;
+                EditClassLevels.Visible = false;
                 Bind_DataList();
             }
         }
@@ -123,6 +146,71 @@ namespace SpeakStat
             myProgress.DataBind();
             con.Close();
 
+        }
+
+        protected void editLevels_Click(object sender, EventArgs e)
+        {
+            //overall edit levels
+            Button btn = (Button)sender;
+
+            string classID = btn.CommandArgument.Split('-')[0].Trim();
+            Session["currClassID"] = classID;
+
+            SqlConnection con = new SqlConnection(connString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Levels WHERE ClassID = @id", con);
+            cmd.Parameters.AddWithValue("@id", classID);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            EditDataList.DataSource = dt;
+            EditDataList.DataBind();
+            con.Close();
+
+            EditClassLevels.Visible = true;
+        }
+
+        protected void EditLevel_Click(object sender, EventArgs e)
+        {
+            //edit specific level
+            Button btn = sender as Button;
+            int levelNum = Convert.ToInt32(btn.CommandArgument);
+            TextBox tb = (TextBox)btn.NamingContainer.Controls[1].Controls[0].Controls[1].Controls[1];
+            string link = tb.Text;
+            if(!link.ToUpper().StartsWith("HTTP://"))
+            {
+                link = "http://" + link;
+            }
+            int classID = Convert.ToInt32(Session["currClassID"]);
+
+            SqlConnection con = new SqlConnection(connString);
+            con.Open();
+            SqlCommand sql = new SqlCommand("UPDATE Levels SET VideoLink = @link WHERE ClassID = @class AND LevelNumber = @level", con);
+            sql.Parameters.AddWithValue("@link", link);
+            sql.Parameters.AddWithValue("@class", classID);
+            sql.Parameters.AddWithValue("@level", levelNum);
+            sql.ExecuteNonQuery();
+            con.Close();
+        }
+
+        protected void AddLevel_Click(object sender, EventArgs e)
+        {
+            //add a level
+            SqlConnection con = new SqlConnection(connString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SELECT TOP 1 LevelNumber FROM Levels WHERE ClassID = @id ORDER BY LevelNumber DESC", con);
+            cmd.Parameters.AddWithValue("@id", Convert.ToInt32(Session["currClassID"]));
+            int lastlevel = Convert.ToInt32(cmd.ExecuteScalar());
+
+            SqlCommand com = new SqlCommand("INSERT INTO Levels VALUES (@classID, 'http://www.youtube.com',@level)",con);
+            com.Parameters.AddWithValue("@classID", Convert.ToInt32(Session["currClassID"]));
+            com.Parameters.AddWithValue("@level", lastlevel + 1);
+            com.ExecuteNonQuery();
+            con.Close();
+
+            Session["Opened"] = true;
+
+            Response.Redirect("ProfessorInterface.aspx");
         }
     }
 }
