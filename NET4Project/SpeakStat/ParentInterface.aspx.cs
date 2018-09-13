@@ -75,7 +75,7 @@ namespace SpeakStat
         {
             //eeege
             Session.Clear();
-            Response.Redirect("LandingPage.aspx");
+            Response.Redirect("index.aspx");
         }
 
         protected void submitDetails_Click(object sender, EventArgs e)

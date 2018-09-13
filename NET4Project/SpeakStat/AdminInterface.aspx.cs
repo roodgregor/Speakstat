@@ -48,7 +48,7 @@ namespace SpeakStat
         {
             //eeege
             Session.Clear();
-            Response.Redirect("LandingPage.aspx");
+            Response.Redirect("index.aspx");
         }
 
         protected void makeAdmin_Click(object sender, EventArgs e)

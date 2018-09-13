@@ -74,7 +74,7 @@
     <Content Include="Images\PARENT.png" />
     <Content Include="Images\STUDENT.png" />
     <Content Include="Images\TEACHER.png" />
-    <Content Include="LandingPage.aspx" />
+    <Content Include="index.aspx" />
     <Content Include="ParentInterface.aspx" />
     <Content Include="ProfessorInterface.aspx" />
     <Content Include="AdminInterface.aspx" />
@@ -82,12 +82,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LandingPage.aspx.cs">
-      <DependentUpon>LandingPage.aspx</DependentUpon>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LandingPage.aspx.designer.cs">
-      <DependentUpon>LandingPage.aspx</DependentUpon>
+    <Compile Include="index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="ParentInterface.aspx.cs">
       <DependentUpon>ParentInterface.aspx</DependentUpon>
