@@ -225,8 +225,6 @@ namespace SpeakStat
             
             con.Close();
 
-            //Response.Redirect("StudentClassPage.aspx");
-
             Response.Write("<script type='text/javascript'>window.open('"+Session["VIDEOLINK"]+"','_blank');</script>");
 
             Response.Write("<script type='text/javascript'>alert('You have completed Level "+level+" of this class!');</script>");

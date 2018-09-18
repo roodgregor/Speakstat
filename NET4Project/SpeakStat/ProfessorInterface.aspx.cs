@@ -122,13 +122,6 @@ namespace SpeakStat
 
         }
 
-        protected void selectClass_Click(object sender, EventArgs e)
-        {
-            Button btn = sender as Button;
-            Session["CLASSNAME"] = btn.CommandArgument.ToString();
-            Response.Redirect("ProfessorClassPage.aspx");
-        }
-
         protected void viewProgress_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
