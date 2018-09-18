@@ -23,10 +23,20 @@ namespace SpeakStat
         {
             SqlConnection con = new SqlConnection(connString);
             SqlCommand cmd = new SqlCommand("SELECT AccID FROM Accounts where Username='" + LoginUsernametxt.Text + "' and UserPass ='" + LoginUserpasstxt.Text + "'", con);
+            SqlCommand com = new SqlCommand("SELECT AccID FROM Accounts where Email='" + LoginUsernametxt.Text + "' and UserPass ='" + LoginUserpasstxt.Text + "'", con);
             con.Open();
 
+            bool exists = true;
             int id = Convert.ToInt32(cmd.ExecuteScalar());
-            if(id!=0)
+            if(id==0)
+            {
+                id = Convert.ToInt32(com.ExecuteScalar());
+                if (id == 0)
+                    exists = false;
+                
+            }
+
+            if(exists==true)
             {
                 SqlCommand type = new SqlCommand("SELECT AccType FROM Accounts Where AccID = '" + id.ToString() + "'", con);
                 string usertype = type.ExecuteScalar().ToString();
@@ -51,9 +61,9 @@ namespace SpeakStat
                     Session["StudentID"] = id;
                     Response.Redirect("StudentInterface.aspx");
                 }
-                
             }
-
+            else
+                Response.Write("<script type='text/javascript'>alert('No such user exists!');</script>");
 
             con.Close();
 

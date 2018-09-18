@@ -239,6 +239,10 @@
             top: 3%;
             left: 82%;
         }
+        #selectButton
+        {
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -281,7 +285,7 @@
                                 <asp:Label ID="Label1" CssClass="SubLabels" runat="server" Text=<%#Eval("ClassName") %>></asp:Label>
                             </td>
                             <td>
-                                <asp:Button ID="selectClass" CssClass="leButton" runat="server" Text="SELECT" CausesValidation="false" OnClick="selectClass_Click" CommandArgument='<%# Eval("ClassName") %>'/>
+                                <asp:Button ID="selectClass" CssClass="leButton selectButton" runat="server" Text="SELECT" CausesValidation="false" OnClick="selectClass_Click" CommandArgument='<%# Eval("ClassName") %>'/>
                             </td>
                         </tr>
                     </table>
