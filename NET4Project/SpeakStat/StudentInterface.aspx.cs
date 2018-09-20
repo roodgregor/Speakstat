@@ -19,6 +19,17 @@ namespace SpeakStat
             id = Convert.ToInt32(Session["StudentID"]);
             if (!Page.IsPostBack)
             {
+                if (Convert.ToBoolean(Session["Opened"]) == false)
+                    Response.Write("<script type='text/javascript'>alert('Successful Login!');</script>");
+                string firstname = "";
+                SqlConnection con = new SqlConnection(connString);
+                SqlCommand com = new SqlCommand("SELECT FName from Accounts WHERE AccID = @id", con);
+                com.Parameters.AddWithValue("@id", id);
+                con.Open();
+                firstname = com.ExecuteScalar().ToString();
+                con.Close();
+                lblWelcome.Text = "Welcome, "+firstname+"!";
+
                 ViewClassPanel.Visible = false;
                 JoinClassPanel.Visible = false;
                 GamePanel.Visible = false;
@@ -89,6 +100,14 @@ namespace SpeakStat
             adapter.Fill(dt);
             myClasses.DataSource = dt;
             myClasses.DataBind();
+
+            SqlCommand com = new SqlCommand("SELECT C.ClassID, C.ClassName, A.FName, A.LName  FROM Accounts A, Classes C WHERE A.AccID = C.InstructorID",con);
+            com.Parameters.AddWithValue("@id", id);
+            SqlDataAdapter ad = new SqlDataAdapter(com);
+            DataTable at = new DataTable();
+            ad.Fill(at);
+            allClasses.DataSource = at;
+            allClasses.DataBind();
             con.Close();
         }
         protected void logoutBtn_Click(object sender, EventArgs e)
@@ -228,6 +247,47 @@ namespace SpeakStat
             Response.Write("<script type='text/javascript'>window.open('"+Session["VIDEOLINK"]+"','_blank');</script>");
 
             Response.Write("<script type='text/javascript'>alert('You have completed Level "+level+" of this class!');</script>");
+        }
+
+        protected void joinFromList_Click(object sender, EventArgs e)
+        {
+            //join from list
+            Button btn = sender as Button;
+            int classID = Convert.ToInt32(btn.CommandArgument);
+
+            SqlConnection conn = new SqlConnection(connString);
+            conn.Open();
+            //check if already in class
+            SqlCommand checkJoin = new SqlCommand("SELECT JoinID from Joining WHERE StudID = @id AND ClassID = @classID", conn);
+            checkJoin.Parameters.AddWithValue("@id", id);
+            checkJoin.Parameters.AddWithValue("@classID", classID);
+            int joinID = Convert.ToInt32(checkJoin.ExecuteScalar());
+            if (joinID == 0)
+            {
+                //command found that class ID
+                SqlCommand joinClass = new SqlCommand("JoinClass", conn);
+                joinClass.CommandType = CommandType.StoredProcedure;
+                joinClass.Parameters.AddWithValue("@StudID", id);
+                joinClass.Parameters.AddWithValue("@ClassID", classID);
+                joinClass.Parameters.AddWithValue("@LevelID", 1);
+                joinClass.ExecuteNonQuery();
+                Response.Write("<script type='text/javascript'>alert('Successfully joined class!');</script>");
+            }
+            else
+            {
+                Response.Write("<script type='text/javascript'>alert('You are already in this class.');</script>");
+            }
+            conn.Close();
+        }
+
+        protected void CloseClassPanel_Click(object sender, EventArgs e)
+        {
+            ViewClassPanel.Visible = false;
+        }
+
+        protected void CloseJoinPanel_Click(object sender, EventArgs e)
+        {
+            JoinClassPanel.Visible = false;
         }
     }
 }

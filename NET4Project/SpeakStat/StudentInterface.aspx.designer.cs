@@ -76,6 +76,51 @@ namespace SpeakStat {
         protected global::System.Web.UI.WebControls.Button joinClass;
         
         /// <summary>
+        /// WelcomePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl WelcomePanel;
+        
+        /// <summary>
+        /// corgi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image corgi;
+        
+        /// <summary>
+        /// classesTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTable classesTable;
+        
+        /// <summary>
+        /// lblWelcome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblWelcome;
+        
+        /// <summary>
+        /// allClasses control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList allClasses;
+        
+        /// <summary>
         /// ViewClassPanel control.
         /// </summary>
         /// <remarks>
@@ -92,6 +137,15 @@ namespace SpeakStat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMyClasses;
+        
+        /// <summary>
+        /// CloseClassPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton CloseClassPanel;
         
         /// <summary>
         /// myClasses control.
@@ -119,6 +173,15 @@ namespace SpeakStat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label showJoinClass;
+        
+        /// <summary>
+        /// CloseJoinPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton CloseJoinPanel;
         
         /// <summary>
         /// joinTable control.

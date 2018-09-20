@@ -32,15 +32,14 @@ namespace SpeakStat
             {
                 id = Convert.ToInt32(com.ExecuteScalar());
                 if (id == 0)
-                    exists = false;
-                
+                    exists = false;                
             }
 
             if(exists==true)
             {
                 SqlCommand type = new SqlCommand("SELECT AccType FROM Accounts Where AccID = '" + id.ToString() + "'", con);
                 string usertype = type.ExecuteScalar().ToString();
-                Response.Write("<script type='text/javascript'>alert('Success!');</script>");
+
                 if (usertype.ToUpper() == "TEACHER")
                 {
                     Session["ProfessorID"] = id;

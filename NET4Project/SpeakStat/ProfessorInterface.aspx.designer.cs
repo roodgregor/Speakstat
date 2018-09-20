@@ -94,6 +94,15 @@ namespace SpeakStat {
         protected global::System.Web.UI.WebControls.Label lblMyClasses;
         
         /// <summary>
+        /// CloseClassPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton CloseClassPanel;
+        
+        /// <summary>
         /// myClasses control.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,15 @@ namespace SpeakStat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl CreateClassPanel;
+        
+        /// <summary>
+        /// CloseCreatePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton CloseCreatePanel;
         
         /// <summary>
         /// showCreateClass control.
@@ -184,6 +202,15 @@ namespace SpeakStat {
         protected global::System.Web.UI.WebControls.Label viewProgress;
         
         /// <summary>
+        /// CloseProgressPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton CloseProgressPanel;
+        
+        /// <summary>
         /// myProgress control.
         /// </summary>
         /// <remarks>
@@ -209,6 +236,15 @@ namespace SpeakStat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label showClassID;
+        
+        /// <summary>
+        /// CloseClassLevels control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton CloseClassLevels;
         
         /// <summary>
         /// EditDataList control.

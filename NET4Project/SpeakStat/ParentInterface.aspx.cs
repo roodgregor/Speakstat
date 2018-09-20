@@ -20,6 +20,9 @@ namespace SpeakStat
             id = Convert.ToInt32(Session["ParentID"]);
             if (!Page.IsPostBack)
             {
+                if (Convert.ToBoolean(Session["Opened"]) == false)
+                    Response.Write("<script type='text/javascript'>alert('Successful Login!');</script>");
+
                 //check if in Parents
                 SqlConnection con = new SqlConnection(connString);
                 con.Open();

@@ -114,7 +114,7 @@
             height: 95%;
             border: 2px solid black;
         }
-        #ViewClassPanel, #JoinClassPanel
+        #ViewClassPanel, #JoinClassPanel, #WelcomePanel
         {
             position: absolute;
             top: 50%;
@@ -127,11 +127,48 @@
             border: 4px solid black;
             text-align: center;
         }
-        #lblMyClasses, #showJoinClass
+        div
+        {
+            overflow-y: auto;
+        }
+        #WelcomePanel
+        {
+            width: 85%;
+            height: 80%;
+            background-color: transparent;
+            border: none;
+            overflow-y: initial;
+        }
+
+        #lblMyClasses, #showJoinClass, #lblWelcome
         {
             color: white;
             font-size: 50px;
             text-shadow: -3px -3px black, 3px -3px black, -3px 3px black, 3px 3px black;
+        }
+        #lblWelcome
+        {
+            font-size: 30px;
+            text-shadow: -2px -2px black, 2px -2px black, -2px 2px black, 2px 2px black;
+            position: absolute;
+            width: auto;
+            height: auto;
+            top: 5%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            background-color: greenyellow;
+            border-radius: 20px;
+            padding: 8px;
+            border: 3px solid black;
+        }
+        #classesTable
+        {
+            text-align: center;
+            width: 100%;
+            height: 80%;
+            background-color: white;
+            border: 4px solid black;
+            border-radius: 20px;
         }
         #showJoinClass
         {
@@ -241,8 +278,22 @@
         }
         #selectButton
         {
-            width: 100%;
+            width: 130%;
         }
+        #corgi
+        {
+            border-radius: 150px 150px 0px 0px;
+            border: 4px solid black;
+            border-bottom: 0px;
+        }
+        .ExitButton
+        {
+            position: absolute;
+            left: 97%;
+            font-size: 20px;
+            text-decoration: none;
+            color: black;
+        }        
     </style>
 </head>
 <body>
@@ -257,8 +308,62 @@
             </div>
         </div>
 
+        <div id="WelcomePanel" runat="server"><br />
+            <asp:Image id="corgi" runat="server" ImageUrl="~/Images/corgi.gif" Height="120px" Width="170px" />
+            <table id="classesTable" runat="server">
+                <tr>
+                    <td style="text-align: center;">
+                        <asp:Label ID="lblWelcome" runat="server" Text="sampletext"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:DataList ID="allClasses" runat="server">
+                            <HeaderTemplate>
+                                <table class="classBox" runat="server">
+                                    <tr>
+                                        <td>
+                                            <asp:Label ID="Label2" CssClass="SubLabels" runat="server" Text="Class ID"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="Label1" CssClass="SubLabels" runat="server" Text="Class Name"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="Label3" CssClass="SubLabels" runat="server" Text="Teacher"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="Label4" CssClass="SubLabels" runat="server" Text="Action"></asp:Label>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <table class="classBox" runat="server">
+                                    <tr>
+                                        <td>
+                                            <asp:Label ID="Label2" CssClass="SubLabels" runat="server" Text=<%#Eval("ClassID") %>></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="Label1" CssClass="SubLabels" runat="server" Text=<%#Eval("ClassName") %>></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="Label5" CssClass="SubLabels" runat="server" Text=<%#Eval("FName") + " " + Eval("LName")%>></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Button ID="joinFromList" runat="server" Text="Join" CssClass="leButton" ValidationGroup="JoinClass" OnClick="joinFromList_Click" CommandArgument=<%#Eval("ClassID") %> />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </ItemTemplate>
+                        </asp:DataList>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
         <div id="ViewClassPanel" runat="server"><br />
             <asp:Label ID="lblMyClasses" runat="server" Text="My Classes"></asp:Label>
+            <asp:LinkButton ID="CloseClassPanel" runat="server" Text="X" CssClass="ExitButton" OnClick="CloseClassPanel_Click" />
             <asp:DataList ID="myClasses" runat="server">
                 <HeaderTemplate>
                     <table class="classBox" runat="server">
@@ -285,7 +390,7 @@
                                 <asp:Label ID="Label1" CssClass="SubLabels" runat="server" Text=<%#Eval("ClassName") %>></asp:Label>
                             </td>
                             <td>
-                                <asp:Button ID="selectClass" CssClass="leButton selectButton" runat="server" Text="SELECT" CausesValidation="false" OnClick="selectClass_Click" CommandArgument='<%# Eval("ClassName") %>'/>
+                                <asp:Button ID="selectClass" CssClass="leButton selectButton" runat="server" Text="SELECT" CausesValidation="false" Width="80%" OnClick="selectClass_Click" CommandArgument='<%# Eval("ClassName") %>'/>
                             </td>
                         </tr>
                     </table>
@@ -295,6 +400,7 @@
 
         <div id="JoinClassPanel" runat="server"><br />
             <asp:Label ID="showJoinClass" runat="server" Text="Join A Class"></asp:Label>
+            <asp:LinkButton ID="CloseJoinPanel" runat="server" Text="X" CssClass="ExitButton" OnClick="CloseJoinPanel_Click" />
             <table id="joinTable" runat="server">
                 <tr id="pushrow">
                     <td>

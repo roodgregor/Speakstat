@@ -15,7 +15,7 @@ namespace SpeakStat
         private string connString = ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
         int id;
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {          
             id = Convert.ToInt32(Session["ProfessorID"]);
             if(Convert.ToBoolean(Session["Opened"]) == true)
             {
@@ -41,6 +41,9 @@ namespace SpeakStat
             }
             else if (!Page.IsPostBack)
             {
+                if (Convert.ToBoolean(Session["Opened"]) == false)
+                    Response.Write("<script type='text/javascript'>alert('Successful Login!');</script>");
+
                 ViewClassPanel.Visible = false;
                 CreateClassPanel.Visible = false;
                 ProgressPanel.Visible = false;
@@ -204,6 +207,26 @@ namespace SpeakStat
             Session["Opened"] = true;
 
             Response.Redirect("ProfessorInterface.aspx");
+        }
+
+        protected void CloseClassPanel_Click(object sender, EventArgs e)
+        {
+            ViewClassPanel.Visible = false;
+        }
+
+        protected void CloseCreatePanel_Click(object sender, EventArgs e)
+        {
+            CreateClassPanel.Visible = false;
+        }
+
+        protected void CloseProgressPanel_Click(object sender, EventArgs e)
+        {
+            ProgressPanel.Visible = false;
+        }
+
+        protected void CloseClassLevels_Click(object sender, EventArgs e)
+        {
+            EditClassLevels.Visible = false;
         }
     }
 }

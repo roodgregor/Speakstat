@@ -172,6 +172,14 @@
             height: 70%;
             width: 60%;
         }
+        .ExitButton
+        {
+            position: absolute;
+            left: 97%;
+            font-size: 20px;
+            text-decoration: none;
+            color: black;
+        }       
     </style>
 </head>
 <body>
@@ -188,6 +196,7 @@
 
         <div id="ViewClassPanel" runat="server"><br />
             <asp:Label ID="lblMyClasses" runat="server" Text="My Classes"></asp:Label>
+            <asp:LinkButton ID="CloseClassPanel" runat="server" Text="X" CssClass="ExitButton" OnClick="CloseClassPanel_Click" />
             <asp:DataList ID="myClasses" runat="server">
                 <HeaderTemplate>
                     <table class="classBox" runat="server">
@@ -222,6 +231,7 @@
         </div>
 
         <div id="CreateClassPanel" runat="server"><br />
+            <asp:LinkButton ID="CloseCreatePanel" runat="server" Text="X" CssClass="ExitButton" OnClick="CloseCreatePanel_Click" />
             <asp:Label ID="showCreateClass" runat="server" Text="Create A Class"></asp:Label>
             <table id="createTable" runat="server">
                 <tr>
@@ -243,6 +253,7 @@
 
         <div id="ProgressPanel" runat="server">
             <asp:Label ID="viewProgress" runat="server" Text="Create A Class"></asp:Label>
+            <asp:LinkButton ID="CloseProgressPanel" runat="server" Text="X" CssClass="ExitButton" OnClick="CloseProgressPanel_Click" />
             <asp:DataList ID="myProgress" runat="server">
                 <HeaderTemplate>
                     <table class="classBox" runat="server">
@@ -273,6 +284,7 @@
 
         <div id="EditClassLevels" runat="server"><br />
             <asp:Label ID="showClassID" runat="server" Text="" /><br />
+            <asp:LinkButton ID="CloseClassLevels" runat="server" Text="X" CssClass="ExitButton" OnClick="CloseClassLevels_Click" />
             <asp:DataList ID="EditDataList" runat="server">
                 <HeaderTemplate>
                     <table class="classBox" runat="server">

@@ -130,6 +130,13 @@
         {
             width: 100%;
         }
+        #promptMessage
+        {
+            width: 100%;
+            font-family: "Walkway Black";
+            font-size: 30px;
+        }
+
     </style>
 </head>
 <body>
