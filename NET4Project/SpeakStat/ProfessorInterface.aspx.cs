@@ -21,6 +21,9 @@ namespace SpeakStat
             {
                 int classID = Convert.ToInt32(Session["currClassID"]);
 
+                EditDataList.DataSource = null;
+                EditDataList.DataBind();
+
                 SqlConnection con = new SqlConnection(connString);
                 con.Open();
                 SqlCommand cmd = new SqlCommand("SELECT * FROM Levels WHERE ClassID = @id AND LevelNumber > -1", con);
