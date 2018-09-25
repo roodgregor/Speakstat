@@ -39,7 +39,6 @@ namespace SpeakStat
                 ViewClassPanel.Visible = false;
                 CreateClassPanel.Visible = false;
                 ProgressPanel.Visible = false;
-                Session["Opened"] = false;
                 Bind_DataList();
             }
             else if (!Page.IsPostBack)
