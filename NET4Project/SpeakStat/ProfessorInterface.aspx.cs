@@ -135,7 +135,7 @@ namespace SpeakStat
 
             SqlConnection con = new SqlConnection(connString);
             con.Open();
-            SqlCommand sql = new SqlCommand("SELECT A.LName, L.LevelNumber FROM Accounts A, Unlocking U, Levels L WHERE U.ClassID = @classID AND L.ClassID = @classID AND A.AccType = 'STUDENT'", con);
+            SqlCommand sql = new SqlCommand("SELECT A.LName, L.LevelNumber FROM Accounts A, Levels L, Unlocking U WHERE AccType = 'STUDENT' AND U.LevelID = L.LevelID AND U.StudID = A.AccID AND L.ClassID = @classID AND U.ClassID = @classID", con);
             sql.Parameters.AddWithValue("@classID", classID);
             SqlDataAdapter dA = new SqlDataAdapter(sql);
             DataTable table = new DataTable();
