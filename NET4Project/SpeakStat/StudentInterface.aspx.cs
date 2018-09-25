@@ -268,7 +268,6 @@ namespace SpeakStat
                 joinClass.CommandType = CommandType.StoredProcedure;
                 joinClass.Parameters.AddWithValue("@StudID", id);
                 joinClass.Parameters.AddWithValue("@ClassID", classID);
-                joinClass.Parameters.AddWithValue("@LevelID", 1);
                 joinClass.ExecuteNonQuery();
                 Response.Write("<script type='text/javascript'>alert('Successfully joined class!');</script>");
             }
