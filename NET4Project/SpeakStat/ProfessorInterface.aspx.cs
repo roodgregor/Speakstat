@@ -23,7 +23,7 @@ namespace SpeakStat
 
                 SqlConnection con = new SqlConnection(connString);
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Levels WHERE ClassID = @id AND LevelNumber < 9", con);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Levels WHERE ClassID = @id AND LevelNumber > -1", con);
                 cmd.Parameters.AddWithValue("@id", classID);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -154,7 +154,7 @@ namespace SpeakStat
 
             SqlConnection con = new SqlConnection(connString);
             con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Levels WHERE ClassID = @id AND LevelNumber < 9", con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Levels WHERE ClassID = @id AND LevelNumber > -1", con);
             cmd.Parameters.AddWithValue("@id", classID);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -257,7 +257,7 @@ namespace SpeakStat
             com2.Parameters.AddWithValue("@classID", classID);
             maxlevel = Convert.ToInt32(com2.ExecuteScalar());
 
-            SqlCommand com3 = new SqlCommand("UPDATE Levels SET LevelNumber = 99 WHERE LevelID = @levelID", con);
+            SqlCommand com3 = new SqlCommand("UPDATE Levels SET LevelNumber = -1 WHERE LevelID = @levelID", con);
             com3.Parameters.AddWithValue("@levelID", levelID);
             com3.ExecuteNonQuery();
 
