@@ -232,25 +232,25 @@ namespace SpeakStat
         protected void DeleteLevel_Click(object sender, EventArgs e)
         {
             //delete level
-            int levelID = 0;
+            int sequence = 0;
             Button btn = sender as Button;
-            levelID = Convert.ToInt32(btn.CommandArgument);
+            sequence = Convert.ToInt32(btn.CommandArgument);
 
-            int classID, sequence, maxlevel;
+            int classID, maxlevel;
+
+            classID = Convert.ToInt32(Session["currClassID"]);
 
             //get where the level is being deleted
 
             SqlConnection con = new SqlConnection(connString);
-            SqlCommand com1 = new SqlCommand("SELECT CONCAT(ClassID,'+',LevelNumber) AS HEADER FROM Levels WHERE LevelID = @levelID", con);
-            com1.Parameters.AddWithValue("@levelID", levelID);
+            SqlCommand com1 = new SqlCommand("SELECT LevelID FROM Levels WHERE ClassID = @classID AND LevelNumber = @levelNum", con);
+            com1.Parameters.AddWithValue("@levelNum", sequence);
+            com1.Parameters.AddWithValue("@classID", classID);
 
             con.Open();
             //OPEN CONNECTION
 
-            string combination = com1.ExecuteScalar().ToString();
-            int pos = combination.IndexOf('+');
-            classID = Convert.ToInt32(combination.Substring(0, pos));
-            sequence = Convert.ToInt32(combination.Substring(pos + 1, combination.Length - pos - 1));
+            int levelID = Convert.ToInt32(com1.ExecuteScalar());
 
             //get highest levelnumber
             SqlCommand com2 = new SqlCommand("select MAX(LevelNumber) FROM Levels WHERE ClassID = @classID", con);
