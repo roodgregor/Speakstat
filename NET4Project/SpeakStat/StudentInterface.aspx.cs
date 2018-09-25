@@ -207,9 +207,9 @@ namespace SpeakStat
             get.Parameters.AddWithValue("@ID", Convert.ToInt32(Session["CLASSID"]));
             int levelID = Convert.ToInt32(get.ExecuteScalar());
 
-            SqlCommand checkLevel = new SqlCommand("SELECT 5 FROM Unlocking WHERE StudID = @stud AND ClassID = @class AND LevelID = @level", con);
+            SqlCommand checkLevel = new SqlCommand("SELECT 5 FROM Unlocking WHERE StudID = @stud AND ClassID = @class AND LevelID < @level", con);
             checkLevel.Parameters.AddWithValue("@stud", Convert.ToInt32(Session["StudentID"]));
-            checkLevel.Parameters.AddWithValue("@level", levelID-1);
+            checkLevel.Parameters.AddWithValue("@level", levelID);
             checkLevel.Parameters.AddWithValue("@class", Convert.ToInt32(Session["CLASSID"]));
             SqlDataReader dro = checkLevel.ExecuteReader();
             if(!dro.HasRows && levelID - 1 == 0)
@@ -236,6 +236,10 @@ namespace SpeakStat
             if(!dr.HasRows)
             {
                 dr.Close();
+                SqlCommand deleteprev = new SqlCommand("DELETE FROM Unlocking WHERE StudID = @stud AND ClassID = @class", con);
+                deleteprev.Parameters.AddWithValue("@stud", Convert.ToInt32(Session["StudentID"]));
+                deleteprev.Parameters.AddWithValue("@class", Convert.ToInt32(Session["CLASSID"]));
+                deleteprev.ExecuteNonQuery();
                 SqlCommand watch = new SqlCommand("INSERT INTO Unlocking VALUES (" + Session["StudentID"].ToString() + "," + Session["CLASSID"].ToString() + "," + Convert.ToInt32(Session["LEVELID"]) + ")", con);
                 watch.ExecuteNonQuery();
             }
