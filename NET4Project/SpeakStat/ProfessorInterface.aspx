@@ -312,7 +312,7 @@
                             </td>
                             <td>
                                 <asp:Button ID="EditLevel" CssClass="leButton" runat="server" Text="Edit" CommandArgument='<%#Eval("LevelNumber")%>' OnClick="EditLevel_Click" />
-                                <asp:Button ID="DeleteLevel" CssClass="leButton" runat="server" Text="Remove" CommandArgument='<%#Eval("LevelNumber")%>'OnClick="DeleteLevel_Click" />
+                                <asp:Button ID="DeleteLevel" CssClass="leButton" runat="server" Text="Remove" CommandArgument='<%#Eval("LevelNumber")%>' OnClick="DeleteLevel_Click" />
                             </td>
                         </tr>
                     </table>
