@@ -286,6 +286,8 @@ namespace SpeakStat
 
             Session["Opened"] = true;
 
+            EditClassLevels.Visible = false;
+
             Response.Redirect("ProfessorInterface.aspx");
         }
     }
