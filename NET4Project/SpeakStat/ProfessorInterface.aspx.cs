@@ -281,6 +281,8 @@ namespace SpeakStat
             //CLOSED CONNECTION
             con.Close();
 
+            Session["Opened"] = true;
+
             Response.Redirect("ProfessorInterface.aspx");
         }
     }

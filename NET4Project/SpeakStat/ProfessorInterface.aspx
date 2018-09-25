@@ -255,7 +255,9 @@
         <div id="ProgressPanel" runat="server">
             <asp:Label ID="viewProgress" runat="server" Text="Create A Class"></asp:Label>
             <asp:LinkButton ID="CloseProgressPanel" runat="server" Text="X" CssClass="ExitButton" OnClick="CloseProgressPanel_Click" />
-            <asp:DataList ID="myProgress" runat="server">
+            
+            <div style="overflow-y: scroll; height: 85%">
+                <asp:DataList ID="myProgress" runat="server">
                 <HeaderTemplate>
                     <table class="classBox" runat="server">
                         <tr>
@@ -281,13 +283,14 @@
                     </table>
                 </ItemTemplate>
             </asp:DataList>
+            </div>
         </div>
 
         <div id="EditClassLevels" runat="server"><br />
             <asp:Label ID="showClassID" runat="server" Text="" /><br />
             <asp:LinkButton ID="CloseClassLevels" runat="server" Text="X" CssClass="ExitButton" OnClick="CloseClassLevels_Click" />
             
-            <div style="overflow:scroll; height:80%;">
+            <div style="overflow-y:scroll; height:85%;">
                 <asp:DataList ID="EditDataList" runat="server">
                 <HeaderTemplate>
                     <table class="classBox" runat="server">
