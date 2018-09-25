@@ -241,7 +241,7 @@ namespace SpeakStat
             //get where the level is being deleted
 
             SqlConnection con = new SqlConnection(connString);
-            SqlCommand com1 = new SqlCommand("SELECT ClassID + '+' + LevelNumber FROM Levels WHERE LevelID = @levelID", con);
+            SqlCommand com1 = new SqlCommand("SELECT CONCAT(ClassID,'+',LevelNumber) AS HEADER FROM Levels WHERE LevelID = @levelID", con);
             com1.Parameters.AddWithValue("@levelID", levelID);
 
             con.Open();
