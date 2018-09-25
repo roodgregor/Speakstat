@@ -160,7 +160,7 @@
             width: 100%;
             text-align: center;
             table-layout: fixed;
-
+            overflow-y: scroll;
         }
         .abot
         {
@@ -214,9 +214,9 @@
                     <table class="classBox" runat="server">
                         <tr>
                             <td class="abot">
-                                <asp:Label ID="Label2" CssClass="SubLabels" runat="server" Text=<%#Eval("ClassID") %>></asp:Label>
+                                <asp:Label ID="Label2" CssClass="SubLabels" runat="server" Text='<%#Eval("ClassID") %>'></asp:Label>
                                 <asp:Label ID="Label3" CssClass="SubLabels" runat="server" Text=" - "></asp:Label>
-                                <asp:Label ID="Label1" CssClass="SubLabels" runat="server" Text=<%#Eval("ClassName") %>></asp:Label>
+                                <asp:Label ID="Label1" CssClass="SubLabels" runat="server" Text='<%#Eval("ClassName") %>'></asp:Label>
                             </td>
                             <td>
                                 <asp:Button ID="viewProgress" CssClass="leButton" runat="server" Text="PROGRESS" CausesValidation="false" OnClick="viewProgress_Click" CommandArgument='<%#Eval("ClassID") %>'/>
@@ -312,6 +312,7 @@
                             </td>
                             <td>
                                 <asp:Button ID="EditLevel" CssClass="leButton" runat="server" Text="Edit" CommandArgument='<%#Eval("LevelNumber")%>' OnClick="EditLevel_Click" />
+                                <asp:Button ID="DeleteLevel" CssClass="leButton" runat="server" Text="Remove" CommandArgument='<%#Eval("LevelNumber")%>'OnClick="DeleteLevel_Click" />
                             </td>
                         </tr>
                     </table>

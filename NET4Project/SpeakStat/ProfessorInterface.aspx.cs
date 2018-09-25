@@ -173,7 +173,7 @@ namespace SpeakStat
             int levelNum = Convert.ToInt32(btn.CommandArgument);
             TextBox tb = (TextBox)btn.NamingContainer.Controls[1].Controls[0].Controls[1].Controls[1];
             string link = tb.Text;
-            if(!link.ToUpper().StartsWith("HTTP://"))
+            if(!(link.ToUpper().StartsWith("HTTP://")|| link.ToUpper().StartsWith("HTTPS://")))
             {
                 link = "http://" + link;
             }
@@ -198,7 +198,7 @@ namespace SpeakStat
             cmd.Parameters.AddWithValue("@id", Convert.ToInt32(Session["currClassID"]));
             int lastlevel = Convert.ToInt32(cmd.ExecuteScalar());
 
-            SqlCommand com = new SqlCommand("INSERT INTO Levels VALUES (@classID, 'http://www.youtube.com',@level)",con);
+            SqlCommand com = new SqlCommand("INSERT INTO Levels VALUES (@classID, 'http://www.google.com',@level)",con);
             com.Parameters.AddWithValue("@classID", Convert.ToInt32(Session["currClassID"]));
             com.Parameters.AddWithValue("@level", lastlevel + 1);
             com.ExecuteNonQuery();
@@ -227,6 +227,59 @@ namespace SpeakStat
         protected void CloseClassLevels_Click(object sender, EventArgs e)
         {
             EditClassLevels.Visible = false;
+        }
+
+        protected void DeleteLevel_Click(object sender, EventArgs e)
+        {
+            //delete level
+            int levelID = 0;
+            Button btn = sender as Button;
+            levelID = Convert.ToInt32(btn.CommandArgument);
+
+            int classID, sequence, maxlevel;
+
+            //get where the level is being deleted
+
+            SqlConnection con = new SqlConnection(connString);
+            SqlCommand com1 = new SqlCommand("SELECT ClassID + '+' + LevelNumber FROM Levels WHERE LevelID = @levelID", con);
+            com1.Parameters.AddWithValue("@levelID", levelID);
+
+            con.Open();
+            //OPEN CONNECTION
+
+            string combination = com1.ExecuteScalar().ToString();
+            int pos = combination.IndexOf('+');
+            classID = Convert.ToInt32(combination.Substring(0, pos));
+            sequence = Convert.ToInt32(combination.Substring(pos + 1, combination.Length - pos - 1));
+
+            //get highest levelnumber
+            SqlCommand com2 = new SqlCommand("select MAX(LevelNumber) FROM Levels WHERE ClassID = @classID", con);
+            com2.Parameters.AddWithValue("@classID", classID);
+            maxlevel = Convert.ToInt32(com2.ExecuteScalar());
+
+            SqlCommand com3 = new SqlCommand("DELETE FROM Levels WHERE LevelID = @levelID", con);
+            com3.Parameters.AddWithValue("@levelID", levelID);
+            com3.ExecuteNonQuery();
+
+            //check if max level
+            if (sequence == maxlevel)
+                return;
+            else
+            {
+                //decrease all level numbers of characters above
+                int changes = maxlevel - sequence;
+                for(int i=0;i<changes;i++)
+                {
+                    sequence += 1;
+                    SqlCommand com4 = new SqlCommand("UPDATE Levels SET LevelNumber = LevelNumber - 1 WHERE LevelNumber = @sequence AND ClassID = @classID", con);
+                    com4.Parameters.AddWithValue("@sequence", sequence);
+                    com4.Parameters.AddWithValue("@classID", classID);
+                    com4.ExecuteNonQuery();
+                }
+            }
+
+            //CLOSED CONNECTION
+            con.Close();
         }
     }
 }
