@@ -237,7 +237,7 @@ namespace SpeakStat
             if(!dr.HasRows)
             {
                 dr.Close();
-                SqlCommand watch = new SqlCommand("INSERT INTO Unlocking VALUES (" + Session["StudentID"].ToString() + "," + Session["CLASSID"].ToString() + "," + level + ")", con);
+                SqlCommand watch = new SqlCommand("INSERT INTO Unlocking VALUES (" + Session["StudentID"].ToString() + "," + Session["CLASSID"].ToString() + "," + Convert.ToInt32(Session["LEVELID"]) + ")", con);
                 watch.ExecuteNonQuery();
             }
             
