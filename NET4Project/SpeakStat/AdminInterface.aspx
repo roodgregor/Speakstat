@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <link rel="icon" href="Images/corgi.gif" type="image/gif" />
+    <link rel="icon" href="Images/corgo.JPG"/>
     <title>SpeakStat Admin Mode</title>
     <style type="text/css">
         @font-face
