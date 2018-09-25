@@ -286,7 +286,9 @@
         <div id="EditClassLevels" runat="server"><br />
             <asp:Label ID="showClassID" runat="server" Text="" /><br />
             <asp:LinkButton ID="CloseClassLevels" runat="server" Text="X" CssClass="ExitButton" OnClick="CloseClassLevels_Click" />
-            <asp:DataList ID="EditDataList" runat="server">
+            
+            <div style="overflow:scroll; height:80%;">
+                <asp:DataList ID="EditDataList" runat="server">
                 <HeaderTemplate>
                     <table class="classBox" runat="server">
                         <tr>
@@ -328,7 +330,7 @@
                     </table>
                 </FooterTemplate>
             </asp:DataList>
-
+            </div>
 
         </div>
 

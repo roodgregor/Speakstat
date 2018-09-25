@@ -280,6 +280,8 @@ namespace SpeakStat
 
             //CLOSED CONNECTION
             con.Close();
+
+            Response.Redirect("ProfessorInterface.aspx");
         }
     }
 }
