@@ -253,7 +253,7 @@
         </div>
 
         <div id="ProgressPanel" runat="server">
-            <asp:Label ID="viewProgress" runat="server" Text="Create A Class"></asp:Label>
+            <asp:Label ID="viewProgress" runat="server" Text="Class Progress"></asp:Label>
             <asp:LinkButton ID="CloseProgressPanel" runat="server" Text="X" CssClass="ExitButton" OnClick="CloseProgressPanel_Click" />
             
             <div style="overflow-y: scroll; height: 85%">
