@@ -154,7 +154,7 @@ namespace SpeakStat
 
             SqlConnection con = new SqlConnection(connString);
             con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Levels WHERE ClassID = @id", con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Levels WHERE ClassID = @id AND LevelNumber < 9", con);
             cmd.Parameters.AddWithValue("@id", classID);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
