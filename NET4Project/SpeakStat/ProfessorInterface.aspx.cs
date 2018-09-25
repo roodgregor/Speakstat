@@ -198,6 +198,9 @@ namespace SpeakStat
             cmd.Parameters.AddWithValue("@id", Convert.ToInt32(Session["currClassID"]));
             int lastlevel = Convert.ToInt32(cmd.ExecuteScalar());
 
+            if (lastlevel < 0)
+                lastlevel = 0;
+
             SqlCommand com = new SqlCommand("INSERT INTO Levels VALUES (@classID, 'http://www.google.com',@level)",con);
             com.Parameters.AddWithValue("@classID", Convert.ToInt32(Session["currClassID"]));
             com.Parameters.AddWithValue("@level", lastlevel + 1);
