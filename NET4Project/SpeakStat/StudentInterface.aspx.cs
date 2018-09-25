@@ -198,17 +198,21 @@ namespace SpeakStat
         {
             ImageButton btn = sender as ImageButton;
             string level = btn.ID.Substring(3, 1);
-            int mustHave = Convert.ToInt32(level) - 1;
 
             SqlConnection con = new SqlConnection(connString);
             con.Open();
 
+            SqlCommand get = new SqlCommand("SELECT LevelID From Levels WHERE LevelNumber = @num AND ClassID = @ID", con);
+            get.Parameters.AddWithValue("@num", Convert.ToInt32(level));
+            get.Parameters.AddWithValue("@ID", Convert.ToInt32(Session["CLASSID"]));
+            int levelID = Convert.ToInt32(get.ExecuteScalar());
+
             SqlCommand checkLevel = new SqlCommand("SELECT 5 FROM Unlocking WHERE StudID = @stud AND ClassID = @class AND LevelID = @level", con);
             checkLevel.Parameters.AddWithValue("@stud", Convert.ToInt32(Session["StudentID"]));
-            checkLevel.Parameters.AddWithValue("@level", mustHave);
+            checkLevel.Parameters.AddWithValue("@level", levelID-1);
             checkLevel.Parameters.AddWithValue("@class", Convert.ToInt32(Session["CLASSID"]));
             SqlDataReader dro = checkLevel.ExecuteReader();
-            if(!dro.HasRows && mustHave != 0)
+            if(!dro.HasRows && levelID - 1 == 0)
             {
                 dro.Close();
                 Response.Write("<script type='text/javascript'>alert('This level is still locked!!!');</script>");
@@ -219,11 +223,6 @@ namespace SpeakStat
             cmd.Parameters.AddWithValue("@num", Convert.ToInt32(level));
             cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(Session["CLASSID"]));
             string videolink = cmd.ExecuteScalar().ToString();
-
-            SqlCommand get = new SqlCommand("SELECT LevelID From Levels WHERE LevelNumber = @num AND ClassID = @ID", con);
-            get.Parameters.AddWithValue("@num", Convert.ToInt32(level));
-            get.Parameters.AddWithValue("@ID", Convert.ToInt32(Session["CLASSID"]));
-            int levelID = Convert.ToInt32(get.ExecuteScalar());
 
             Session["VIDEOLINK"] = videolink;
 
