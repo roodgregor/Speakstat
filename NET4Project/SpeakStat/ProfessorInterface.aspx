@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProfessorInterface.aspx.cs" Inherits="SpeakStat.ProfessorInterface" %>
+﻿<%@ Page Language="C#" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="ProfessorInterface.aspx.cs" Inherits="SpeakStat.ProfessorInterface" %>
 
 <!DOCTYPE html>
 
