@@ -15,7 +15,7 @@ namespace SpeakStat
         private string connString = ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+           if (!Page.IsPostBack)
                 Session["usertype"] = String.Empty;
            if(Session["LOGGED"] != null)
             {
@@ -47,6 +47,8 @@ namespace SpeakStat
             {
                 SqlCommand type = new SqlCommand("SELECT AccType FROM Accounts Where AccID = '" + id.ToString() + "'", con);
                 string usertype = type.ExecuteScalar().ToString();
+
+                Session["LOGGED"] = "Success";
 
                 if (usertype.ToUpper() == "TEACHER")
                 {
