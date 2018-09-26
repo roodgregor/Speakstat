@@ -180,6 +180,7 @@
             position: absolute;
             width: auto;
             height: auto;
+            color: white;
             top: 5%;
             left: 50%;
             transform: translate(-50%, 0%);
@@ -192,7 +193,6 @@
         {
             border-radius: 200px;
             border: 4px solid black;
-            border-bottom: 0px;
         }
     </style>
 </head>
