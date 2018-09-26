@@ -171,6 +171,28 @@
             transform: translate(-50%,-50%);
             height: 500px;
             width: 500px;
+            text-align: center;
+        }
+        #lblWelcome
+        {
+            font-size: 30px;
+            text-shadow: -2px -2px black, 2px -2px black, -2px 2px black, 2px 2px black;
+            position: absolute;
+            width: auto;
+            height: auto;
+            top: 5%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            background-color: greenyellow;
+            border-radius: 20px;
+            padding: 8px;
+            border: 3px solid black;
+        }
+        #corgi
+        {
+            border-radius: 200px;
+            border: 4px solid black;
+            border-bottom: 0px;
         }
     </style>
 </head>
@@ -186,7 +208,7 @@
         </div>
 
         <div id="welcomedoor">
-            <asp:Image id="corgi" runat="server" ImageUrl="~/Images/corgi.gif" Height="500px" Width="550px" />
+            <asp:Image id="corgi" runat="server" ImageUrl="~/Images/corgi.gif" Height="500px" Width="600px" />
             <asp:Label ID="lblWelcome" runat="server" Text="sampletext"></asp:Label>
         </div>
 
