@@ -178,7 +178,7 @@
 
         <div id="ViewUsersPanel" runat="server"><br />
             <asp:Label ID="lblMyClasses" runat="server" Text="My Classes"></asp:Label>
-            <div style="overflow-y: scroll; height: 85%">
+            <div style="overflow-y: scroll; height: 65%">
                 <asp:DataList ID="myClasses" runat="server">
                 <HeaderTemplate>
                     <table class="classBox" runat="server">
