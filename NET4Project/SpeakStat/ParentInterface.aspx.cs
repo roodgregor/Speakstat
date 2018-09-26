@@ -70,7 +70,7 @@ namespace SpeakStat
         {
             SqlConnection con = new SqlConnection(connString);
             con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT J.StudID, C.ClassName, L.LevelNumber FROM Classes C, Levels L, Joining J WHERE J.StudID = @id AND J.ClassID = C.ClassID AND J.LevelID = L.LevelID", con);
+            SqlCommand cmd = new SqlCommand("SELECT U.StudID, C.ClassName, L.LevelNumber FROM Classes C, Levels L, Unlocking U WHERE U.StudID = @id AND U.ClassID = C.ClassID AND L.ClassID = C.ClassID AND L.LevelID = U.LevelID", con);
             cmd.Parameters.AddWithValue("@id", myChild);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
