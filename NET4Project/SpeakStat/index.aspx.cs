@@ -17,6 +17,11 @@ namespace SpeakStat
         {
             if (!Page.IsPostBack)
                 Session["usertype"] = String.Empty;
+            if (Session["LOGGED"].ToString() == "Invalid")
+            {
+                Response.Write("<script type='text/javascript'>alert('Log In to Continue!');</script>");
+                Session.Clear();
+            }
         }
 
         protected void Login_Click(object sender, EventArgs e)

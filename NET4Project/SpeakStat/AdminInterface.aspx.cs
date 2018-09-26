@@ -15,6 +15,12 @@ namespace SpeakStat
         private string connString = ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["LOGGED"] == null)
+            {
+                Session.Clear();
+                Session["LOGGED"] = "Invalid";
+                Response.Redirect("index.aspx");
+            }
             if (!Page.IsPostBack)
             {
                 ViewUsersPanel.Visible = false;

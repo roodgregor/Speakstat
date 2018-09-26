@@ -18,6 +18,12 @@ namespace SpeakStat
         protected void Page_Load(object sender, EventArgs e)
         {
             id = Convert.ToInt32(Session["ParentID"]);
+            if (Session["LOGGED"] == null)
+            {
+                Session.Clear();
+                Session["LOGGED"] = "Invalid";
+                Response.Redirect("index.aspx");
+            }
             if (!Page.IsPostBack)
             {
                 if (Convert.ToBoolean(Session["Opened"]) == false)

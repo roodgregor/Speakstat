@@ -17,8 +17,19 @@ namespace SpeakStat
         protected void Page_Load(object sender, EventArgs e)
         {          
             id = Convert.ToInt32(Session["ProfessorID"]);
+            if(Session["LOGGED"]==null)
+            {
+                Session.Clear();
+                Session["LOGGED"] = "Invalid";
+                Response.Redirect("index.aspx");
+            }
             if(Convert.ToBoolean(Session["Opened"]) == true)
             {
+                if(Convert.ToBoolean(Session["DeletedVid"])==true)
+                {
+                    Session["DeletedVid"] = null;
+                    Response.Write("<script type='text/javascript'>alert('Level has been deleted!');</script>");
+                }
                 int classID = Convert.ToInt32(Session["currClassID"]);
 
                 EditDataList.DataSource = null;
@@ -292,7 +303,7 @@ namespace SpeakStat
 
             EditClassLevels.Visible = false;
 
-            Response.Write("<script type='text/javascript'>alert('Level has been deleted!');</script>");
+            Session["DeletedVid"] = true;
 
             Response.Redirect("ProfessorInterface.aspx");
         }
