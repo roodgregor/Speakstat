@@ -156,6 +156,13 @@
             width: auto;
             cursor: pointer;
         }
+        #prompter
+        {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
     </style>
 </head>
 <body>
@@ -171,7 +178,8 @@
 
         <div id="ViewUsersPanel" runat="server"><br />
             <asp:Label ID="lblMyClasses" runat="server" Text="My Classes"></asp:Label>
-            <asp:DataList ID="myClasses" runat="server">
+            <div style="overflow-y: scroll; height: 85%">
+                <asp:DataList ID="myClasses" runat="server">
                 <HeaderTemplate>
                     <table class="classBox" runat="server">
                         <tr>
@@ -214,10 +222,11 @@
                     </table>
                 </ItemTemplate>
             </asp:DataList>
+            </div>
         </div>
 
         <div id="PromptPanel" runat="server">
-            <table class="classbox" runat="server">
+            <table id="prompter" class="classbox" runat="server">
                 <tr>
                     <td colspan="2">
                         <asp:Label ID="promptText" CssClass="SubLabels" runat="server" Text="Are you sure?"></asp:Label>
