@@ -84,7 +84,7 @@
         }
         #viewUsers
         {
-            left: 26%;
+            left: 30%;
             width: auto;
         }
         #joinClass
@@ -95,6 +95,7 @@
         #myClasses
         {
             width: 90%;
+            height: inherit;
             position: absolute;
             top: 50%;
             left: 50%;
