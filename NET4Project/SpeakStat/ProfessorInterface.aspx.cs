@@ -189,6 +189,8 @@ namespace SpeakStat
             sql.Parameters.AddWithValue("@level", levelNum);
             sql.ExecuteNonQuery();
             con.Close();
+
+            Response.Write("<script type='text/javascript'>alert('Video link successfully updated!');</script>");
         }
 
         protected void AddLevel_Click(object sender, EventArgs e)
@@ -289,6 +291,8 @@ namespace SpeakStat
             Session["Opened"] = true;
 
             EditClassLevels.Visible = false;
+
+            Response.Write("<script type='text/javascript'>alert('Level has been deleted!');</script>");
 
             Response.Redirect("ProfessorInterface.aspx");
         }
