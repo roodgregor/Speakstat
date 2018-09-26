@@ -163,6 +163,15 @@
             left: 50%;
             transform: translate(-50%,-50%);
         }
+        #welcomedoor
+        {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            height: 500px;
+            width: 500px;
+        }
     </style>
 </head>
 <body>
@@ -176,9 +185,14 @@
             </div>
         </div>
 
+        <div id="welcomedoor">
+            <asp:Image id="corgi" runat="server" ImageUrl="~/Images/corgi.gif" Height="500px" Width="550px" />
+            <asp:Label ID="lblWelcome" runat="server" Text="sampletext"></asp:Label>
+        </div>
+
         <div id="ViewUsersPanel" runat="server"><br />
             <asp:Label ID="lblMyClasses" runat="server" Text="My Classes"></asp:Label>
-            <div style="overflow-y: scroll; height: 65%">
+            <div style="overflow-y: scroll; height: 65%;">
                 <asp:DataList ID="myClasses" runat="server">
                 <HeaderTemplate>
                     <table class="classBox" runat="server">

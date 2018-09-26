@@ -27,6 +27,15 @@ namespace SpeakStat
                 PromptPanel.Visible = false;
                 Bind_DataList();
             }
+            int id = Convert.ToInt32(Session["AdminID"]);
+            string firstname = "";
+            SqlConnection con = new SqlConnection(connString);
+            SqlCommand com = new SqlCommand("SELECT FName from Accounts WHERE AccID = @id", con);
+            com.Parameters.AddWithValue("@id", id);
+            con.Open();
+            firstname = com.ExecuteScalar().ToString();
+            con.Close();
+            lblWelcome.Text = "Welcome, Admin " + firstname + "!";
         }
 
         protected void viewUsers_Click(object sender, EventArgs e)
