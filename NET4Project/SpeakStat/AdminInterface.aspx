@@ -95,11 +95,7 @@
         #myClasses
         {
             width: 90%;
-            height: inherit;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
+            height: 85%;
             text-align: center;
         }
         .classBox
@@ -215,7 +211,7 @@
 
         <div id="ViewUsersPanel" runat="server"><br />
             <asp:Label ID="lblMyClasses" runat="server" Text="My Classes"></asp:Label>
-            <div style="overflow-y: scroll; height: 65%;">
+            <div style="overflow-y: scroll; height: 90%;">
                 <asp:DataList ID="myClasses" runat="server">
                 <HeaderTemplate>
                     <table class="classBox" runat="server">
