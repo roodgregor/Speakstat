@@ -262,7 +262,7 @@ namespace SpeakStat
             com2.Parameters.AddWithValue("@classID", classID);
             maxlevel = Convert.ToInt32(com2.ExecuteScalar());
 
-            SqlCommand com3 = new SqlCommand("DELETE FROM LEVELS WHERE LevelID = @levelID", con);
+            SqlCommand com3 = new SqlCommand("DELETE FROM UNLOCKING WHERE LevelID = @levelID; DELETE FROM LEVELS WHERE LevelID = @levelID", con);
             com3.Parameters.AddWithValue("@levelID", levelID);
             com3.ExecuteNonQuery();
 
